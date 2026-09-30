@@ -1,0 +1,89 @@
+/* Organic editorial treatment: illustrations and open type lead the page. */
+.section.section--sage,
+.section.section--rose,
+.section.section--beige,
+.site-footer { background: transparent; }
+.mobile-nav { box-shadow: none; }
+
+.page-hero--illustrated { padding: 52px 0 78px; }
+.page-hero--illustrated .page-hero-inner { display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(300px, .82fr); align-items: center; gap: clamp(36px, 7vw, 100px); }
+.page-hero-copy { position: relative; z-index: 2; }
+.page-hero-copy h1 { max-width: 850px; }
+.page-hero-copy > p:not(.eyebrow) { max-width: 660px; margin-bottom: 23px; }
+.page-hero-art { position: relative; min-height: 350px; display: flex; align-items: center; justify-content: center; isolation: isolate; }
+.page-hero-art::before { content: ''; position: absolute; inset: 4% 0 0; background: #e3ece5; border-radius: 48% 52% 43% 57%; z-index: -2; }
+.page-hero-orbit { position: absolute; width: 76%; aspect-ratio: 1; border-radius: 50%; background: #f1dfd2; right: -7%; top: 0; z-index: -1; opacity: .72; }
+.page-hero-art > img:not(.page-hero-sprig) { width: 100%; max-height: 410px; object-fit: contain; object-position: center bottom; }
+.page-hero-sprig { position: absolute; left: -4%; bottom: 5%; width: 105px; transform: rotate(-18deg); opacity: .78; }
+
+.section .steps > div { position: relative; min-height: 0; overflow: visible; padding: 22px 0 18px; border-radius: 0; background: transparent; box-shadow: none; transition: transform .25s; }
+.section .steps > div:nth-child(n) { background: transparent; }
+.section .steps > div:hover { transform: translateY(-3px); box-shadow: none; }
+.section .steps > div > svg { color: #698f84; display: block; margin-bottom: 18px; }
+.section .steps .step-number { position: static; display: block; margin-bottom: 9px; color: #d0927c; }
+.section .steps h3 { max-width: 320px; }
+.section .faq-list { gap: 26px 56px; }
+.section .faq-list details { padding: 21px 0; border-radius: 0; background: transparent; box-shadow: none; transition: none; }
+.section .faq-list details:nth-child(n),
+.section .faq-list details[open] { background: transparent; }
+.section .faq-list details:hover { transform: none; }
+.section .faq-list summary::after { background: transparent; color: #d18e77; }
+.section .faq-list details[open] summary::after { background: transparent; }
+.section .faq-list details p { padding: 14px 28px 0 0; }
+
+.contact-social .social-links { flex-direction: row; flex-wrap: wrap; gap: 17px 24px; }
+.contact-social .social-links a { padding: 4px 0; border-radius: 0; background: transparent; color: #29433f; font-size: .92rem; }
+.booking-panel { grid-template-columns: 1.08fr .92fr; gap: clamp(35px, 7vw, 100px); align-items: center; }
+.booking-panel .booking-expectations,
+.booking-panel .booking-contact { position: relative; padding: 22px 0; border-radius: 0; background: transparent; box-shadow: none; }
+.booking-panel .booking-expectations::before { content: ''; position: absolute; z-index: -1; width: 190px; height: 235px; right: -35px; top: -15px; border-radius: 54% 46% 61% 39%; background: #e5eee8; opacity: .65; }
+.booking-contact-icon { width: 62px; height: 62px; display: grid; place-items: center; border-radius: 50%; background: #e5eee8; color: #638579; margin-bottom: 23px; }
+.booking-panel .booking-contact .notice { margin-top: 18px; }
+.values-grid { gap: clamp(25px, 4vw, 65px); }
+.values-grid article { padding: 12px 0; border-radius: 0; background: transparent; box-shadow: none; }
+.values-grid article:nth-child(n) { background: transparent; }
+.values-grid svg { color: #698f84; margin-bottom: 18px; }
+.about-next-step { padding: 15px 0; border-radius: 0; background: transparent; }
+.contact-illustration { overflow: visible; background: #e1ebe5; }
+.contact-illustration span { right: -4px; bottom: 2px; padding: 0; border-radius: 0; background: transparent; color: #48695e; box-shadow: none; }
+.section.final-cta > .container { max-width: 1000px; padding: 25px 20px; border-radius: 0; background: transparent; box-shadow: none; }
+.section.final-cta h2,
+.section.final-cta p,
+.section.final-cta .eyebrow { color: inherit; }
+.section.final-cta h2 em { color: #718d7d; }
+.section.final-cta .editorial-link { color: #29433f; }
+.section.final-cta .editorial-link svg { color: #d7826a; }
+.section.final-cta::before,
+.section.final-cta::after { opacity: .37; }
+
+.accompaniment-article .topic-list { gap: 42px; margin-top: 52px; }
+.accompaniment-article .topic { position: relative; display: grid; grid-template-columns: 110px minmax(0, 820px); gap: 26px; padding: 22px 0; border-radius: 0; background: transparent; box-shadow: none; scroll-margin-top: 30px; }
+.accompaniment-article .topic:nth-child(n) { background: transparent; }
+.accompaniment-article .topic-index { display: flex; align-items: flex-start; gap: 18px; color: #708d80; }
+.accompaniment-article .topic-index span { font-family: var(--serif); font-size: 2rem; color: #d0927c; }
+.accompaniment-article .topic h3 { margin-bottom: 15px; }
+.accompaniment-article .topic p { max-width: 780px; font-size: 1.06rem; }
+.accompaniment-article .topic-summary { font-family: var(--serif); font-size: clamp(1.5rem, 2.4vw, 2rem) !important; line-height: 1.25; color: #536f63; }
+
+@media (max-width: 800px) {
+  .page-hero--illustrated .page-hero-inner { grid-template-columns: 1fr; gap: 22px; }
+  .page-hero-art { min-height: 290px; max-width: 510px; width: 100%; justify-self: center; }
+  .page-hero-art > img:not(.page-hero-sprig) { max-height: 340px; }
+  .page-hero--illustrated { padding-top: 42px; }
+  .booking-panel { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .section .faq-list { grid-template-columns: 1fr; gap: 10px; }
+  .section .faq-list details { padding: 15px 0; }
+  .section .steps > div { min-height: 0; padding: 24px 0; }
+  .page-hero-art { min-height: 230px; }
+  .page-hero-sprig { width: 72px; }
+  .values-grid { grid-template-columns: 1fr; gap: 15px; margin: 28px 0 32px; }
+  .about-next-step { display: block; }
+  .about-next-step .link-row { margin-top: 15px; }
+  .contact-illustration { min-height: 320px; }
+  .section.final-cta > .container { padding: 22px 0; }
+  .accompaniment-article .topic { grid-template-columns: 1fr; gap: 10px; padding: 15px 0; }
+  .accompaniment-article .topic-index { gap: 15px; }
+  .accompaniment-article .topic-index svg { width: 26px; }
+}

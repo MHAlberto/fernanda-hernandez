@@ -1,0 +1,9 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageIntro from '../components/shared/PageIntro.astro';
+const analyticsEnabled = import.meta.env.PROD && Boolean(import.meta.env.PUBLIC_CF_WEB_ANALYTICS_TOKEN?.trim());
+---
+<BaseLayout title="Aviso de privacidad" description="Información sobre privacidad del sitio web de la Psic. Fernanda Hernández." noindex>
+  <PageIntro eyebrow="Información del sitio" title="Aviso de privacidad" description="Esta página informa sobre el tratamiento de datos asociado a la navegación y los canales de contacto." />
+  <section class="section section--sage"><div class="container narrow prose"><h2>Datos en este sitio</h2><p>Este sitio no incluye formularios ni recoge información clínica directamente. Si decides usar un enlace externo, como WhatsApp o una red social, la comunicación ocurre en esa plataforma y se rige también por sus condiciones de privacidad.</p><h2>Medición del sitio</h2>{analyticsEnabled ? <p>Este sitio utiliza Cloudflare Web Analytics para consultar datos agregados de navegación y rendimiento, como páginas visitadas, origen de la visita, navegador, dispositivo y tiempos de carga. Cloudflare indica que su herramienta no utiliza cookies ni almacenamiento local para estas métricas y que no registra las direcciones IP en sus bases de datos. <a href="https://developers.cloudflare.com/web-analytics/about/">Consulta cómo funciona Cloudflare Web Analytics.</a></p> : <p>La analítica aún no está activada. Si se habilita Cloudflare Web Analytics, esta página describirá los datos agregados de navegación y rendimiento que mide el servicio.</p>}<h2>Versión definitiva</h2><p>Este texto es informativo y provisional. Antes de recibir consultas, debe revisarse y sustituirse por un aviso de privacidad definitivo que identifique a la persona responsable, sus medios de contacto y las finalidades del tratamiento de datos.</p></div></section>
+</BaseLayout>

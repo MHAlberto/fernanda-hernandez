@@ -1,0 +1,18 @@
+---
+import Logo from '../brand/Logo.astro';
+import { navigation } from '../../data/navigation';
+const current = Astro.url.pathname;
+---
+<header class="site-header"><div class="container header-inner">
+  <Logo />
+  <nav class="desktop-nav" aria-label="Navegación principal">{navigation.map(item => <a href={item.href} aria-current={current === item.href ? 'page' : undefined}>{item.label}</a>)}</nav>
+  <button class="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-nav"><span></span><span></span></button>
+</div><nav id="mobile-nav" class="mobile-nav" aria-label="Navegación móvil" hidden>{navigation.map(item => <a href={item.href} aria-current={current === item.href ? 'page' : undefined}>{item.label}</a>)}</nav></header>
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
+  const nav = document.querySelector<HTMLElement>('#mobile-nav');
+  function closeMenu() { if (!toggle || !nav) return; toggle.setAttribute('aria-expanded', 'false'); toggle.setAttribute('aria-label', 'Abrir menú'); nav.hidden = true; }
+  toggle?.addEventListener('click', () => { if (!nav) return; const open = toggle.getAttribute('aria-expanded') !== 'true'; toggle.setAttribute('aria-expanded', String(open)); toggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú'); nav.hidden = !open; if (open) nav.querySelector('a')?.focus(); });
+  document.addEventListener('keydown', event => { if (event.key === 'Escape' && toggle?.getAttribute('aria-expanded') === 'true') { closeMenu(); toggle.focus(); } });
+  nav?.addEventListener('click', event => { if ((event.target as Element).closest('a')) closeMenu(); });
+</script>

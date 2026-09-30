@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageIntro from '../components/shared/PageIntro.astro';
+import EditorialLink from '../components/shared/EditorialLink.astro';
+---
+<BaseLayout title="Sobre Fernanda" description="Conoce cómo entiende la Psic. Fernanda Hernández el espacio terapéutico, la escucha y el trabajo compartido en sesiones en línea.">
+  <PageIntro eyebrow="Sobre mí" title="Una escucha atenta, un proceso compartido" description="Soy Fernanda Hernández, psicóloga clínica. Concibo la terapia como un encuentro profesional donde podamos comprender con cuidado lo que hoy te preocupa y lo que le da contexto." />
+  <section class="section about-story"><div class="container split">
+    <div class="about-story-copy prose"><p class="eyebrow">Cómo entiendo este espacio</p><h2>Tu historia merece <em>tiempo y contexto</em></h2>
+      <p>Acercarse a la terapia puede despertar preguntas: qué contar, por dónde empezar o qué esperar. No necesitas llegar con una explicación ordenada. Podemos comenzar con aquello que hoy te resulte más cercano y construir, conversación a conversación, una comprensión más amplia.</p>
+      <p>Mi tarea es escuchar con atención, hacer preguntas que ayuden a mirar la experiencia desde distintos ángulos y acompañar la exploración sin imponer respuestas. El proceso se construye en diálogo: tus inquietudes, tus tiempos y las preguntas que aparezcan orientan el trabajo.</p>
+      <p>Trabajo desde una mirada integrativa y psicodinámica. Esto significa atender tanto las necesidades del presente como los vínculos, experiencias y patrones que forman parte de tu historia. Puedes conocer con más detalle <a href="/enfoque/">cómo se traduce esta mirada en terapia</a>.</p>
+    </div>
+    <figure class="about-story-art organic-art"><span class="organic-blob" aria-hidden="true"></span><img src="/assets/03-ilustraciones-principales/ilustracion-laptop.webp" alt="Una computadora lista para una sesión de psicoterapia en línea" width="1256" height="1256" loading="lazy" /><figcaption>Un encuentro en línea, desde un espacio privado.</figcaption></figure>
+  </div></section>
+  <section class="section section--sage"><div class="container about-practice">
+    <div><p class="eyebrow">Qué puedes esperar</p><h2>Un trabajo claro, <em>hecho en conjunto</em></h2></div>
+    <div class="prose"><p>Al inicio podemos conversar sobre lo que te trae, qué te gustaría comprender y qué dudas tienes. No es necesario tener una meta definitiva; podemos formularla y revisarla conforme conozcamos mejor tu situación.</p>
+      <p>En cada encuentro habrá espacio para hablar de lo que ocurre hoy y, cuando sea útil para ti, explorar cómo se relaciona con otras experiencias. Puedes preguntar, expresar si algo no te hace sentido y participar en las decisiones sobre el proceso.</p>
+      <p>La atención es exclusivamente en línea, por videollamada. Si quieres conocer la modalidad y el primer contacto, encontrarás esa información en <a href="/en-linea/">sesiones en línea</a> y en la página para <a href="/agendar/">agendar una primera sesión</a>.</p>
+      <div class="link-row"><EditorialLink href="/enfoque/" label="Conocer el enfoque terapéutico" /><EditorialLink href="/agendar/" label="Agendar sesión" accent /></div>
+    </div>
+  </div></section>
+</BaseLayout>

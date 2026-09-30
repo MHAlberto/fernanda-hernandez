@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 360 240"
+     width="360"
+     height="240">
+
+  <!-- Banda ondulada principal -->
+  <path
+    d="
+      M 24 211
+      L 24 157
+
+      C 43 135, 62 116, 86 109
+      C 105 103, 123 110, 143 110
+      C 166 110, 182 96, 202 78
+      C 224 58, 245 42, 270 35
+      C 297 28, 322 32, 338 42
+
+      L 338 119
+
+      C 322 113, 307 107, 292 108
+      C 270 109, 252 121, 234 138
+      C 216 155, 199 174, 178 183
+      C 157 192, 137 189, 117 182
+      C 97 175, 79 173, 65 180
+      C 50 187, 39 198, 31 209
+
+      Z
+    "
+    fill="#F3EDE5"
+  />
+
+  <!-- Línea decorativa superior -->
+  <path
+    d="
+      M 26 177
+      C 45 153, 66 137, 89 134
+      C 109 132, 126 140, 145 140
+      C 166 140, 183 129, 202 112
+      C 224 92, 244 76, 267 68
+      C 292 60, 316 65, 338 76
+    "
+    fill="none"
+    stroke="#E7D6C8"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+
+  <!-- Línea decorativa inferior -->
+  <path
+    d="
+      M 27 203
+      C 44 182, 61 168, 82 164
+      C 102 160, 119 168, 137 169
+      C 158 171, 176 161, 194 146
+      C 213 130, 232 112, 254 101
+      C 280 88, 308 88, 338 103
+    "
+    fill="none"
+    stroke="#EADDD2"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+
+</svg>

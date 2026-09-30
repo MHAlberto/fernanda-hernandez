@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 220 220"
+     width="220"
+     height="220">
+
+  <!-- Sol -->
+  <path
+    d="
+      M 77 157
+      C 77 135, 93 119, 113 119
+      C 133 119, 149 135, 149 157
+      Z
+    "
+    fill="#EBC4B2"
+  />
+
+  <!-- Línea base -->
+  <path
+    d="
+      M 77 157
+      L 149 157
+    "
+    fill="none"
+    stroke="#D6AA95"
+    stroke-width="2.2"
+    stroke-linecap="round"
+  />
+
+  <!-- Rayos -->
+  <g
+    fill="none"
+    stroke="#C99379"
+    stroke-width="4"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+
+    <!-- Izquierda exterior -->
+    <path d="
+      M 39 120
+      L 59 132
+    "/>
+
+    <!-- Izquierda superior -->
+    <path d="
+      M 69 85
+      L 82 108
+    "/>
+
+    <!-- Centro -->
+    <path d="
+      M 113 75
+      L 113 101
+    "/>
+
+    <!-- Derecha superior -->
+    <path d="
+      M 158 86
+      L 144 108
+    "/>
+
+    <!-- Derecha exterior -->
+    <path d="
+      M 187 122
+      L 166 133
+    "/>
+
+  </g>
+
+</svg>

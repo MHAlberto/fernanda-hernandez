@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 300 220"
+     width="300"
+     height="220">
+
+  <!-- Línea ondulada principal -->
+  <path
+    d="
+      M 7 108
+
+      C 28 91, 51 84, 72 85
+      C 98 86, 116 98, 136 114
+      C 154 128, 169 139, 187 142
+
+      C 204 145, 220 140, 230 131
+      C 238 124, 243 115, 244 106
+    "
+    fill="none"
+    stroke="#7E8581"
+    stroke-width="3"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+
+  <!-- Corazón integrado en la línea -->
+  <path
+    d="
+      M 244 106
+
+      C 237 98, 229 90, 226 82
+      C 223 73, 226 67, 232 65
+      C 239 63, 246 68, 249 77
+
+      C 253 69, 258 65, 264 66
+      C 271 67, 274 73, 272 80
+      C 270 88, 262 97, 250 107
+
+      C 260 116, 271 122, 283 124
+      C 289 125, 294 123, 298 120
+    "
+    fill="none"
+    stroke="#B98770"
+    stroke-width="3.2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+
+</svg>

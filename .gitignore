@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.astro/
+.npm-cache/
+.env
+.env.local
+.wrangler/
+.wrangler-config/
+.wrangler-dry-run/
+.playwright-cli/
+.env*
+!.env.example
+.dev.vars
+.dev.vars.*

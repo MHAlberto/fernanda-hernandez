@@ -1,0 +1,8 @@
+---
+interface Props { variant?: 'full' | 'mark'; }
+const { variant = 'full' } = Astro.props;
+const src = variant === 'full' ? '/assets/01-logos/logo-completo.png' : '/assets/01-logos/logo-icono.svg';
+---
+<a class={`brand brand--${variant}`} href="/" aria-label="Fernanda Hernández — inicio">
+  <img src={src} alt="" width={variant === 'full' ? 800 : 300} height={variant === 'full' ? 450 : 200} />
+</a>

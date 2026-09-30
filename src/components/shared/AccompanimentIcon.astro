@@ -1,0 +1,8 @@
+---
+import { Activity, Sparkles, UsersRound, Flower2, Waypoints, Heart, Compass } from '@lucide/astro';
+interface Props { icon: 'waves' | 'sparkles' | 'users' | 'flower' | 'waypoints' | 'heart' | 'compass'; size?: number; }
+const { icon, size = 29 } = Astro.props;
+const icons = { waves: Activity, sparkles: Sparkles, users: UsersRound, flower: Flower2, waypoints: Waypoints, heart: Heart, compass: Compass };
+const Icon = icons[icon];
+---
+<Icon size={size} stroke-width={1.4} aria-hidden="true" />

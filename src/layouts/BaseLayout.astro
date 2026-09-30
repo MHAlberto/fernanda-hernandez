@@ -1,0 +1,28 @@
+---
+import SEO from '../components/seo/SEO.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import WhatsAppButton from '../components/shared/WhatsAppButton.astro';
+import '../styles/global.css';
+import '../styles/organic.css';
+import '../styles/redesign.css';
+import '../styles/pages.css';
+const webAnalyticsToken = import.meta.env.PROD ? import.meta.env.PUBLIC_CF_WEB_ANALYTICS_TOKEN?.trim() : undefined;
+const googleVerification = import.meta.env.PROD ? import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION?.trim() : undefined;
+interface Props { title: string; description: string; image?: string; noindex?: boolean; type?: string; publishedTime?: string; modifiedTime?: string; jsonLd?: object | object[]; }
+const { title, description, image, noindex, type, publishedTime, modifiedTime, jsonLd } = Astro.props;
+---
+<!doctype html>
+<html lang="es-MX"><head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="theme-color" content="#F8F4EF" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" /><SEO {...{ title, description, image, noindex, type, publishedTime, modifiedTime }} />
+  {googleVerification && <meta name="google-site-verification" content={googleVerification} />}{jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+</head><body><a class="skip-link" href="#main">Saltar al contenido</a><Header /><main id="main"><slot /></main><Footer /><WhatsAppButton />
+<script>
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); } }), { threshold: .08 });
+    document.querySelectorAll('[data-reveal]').forEach(el => observer.observe(el));
+  } else document.querySelectorAll('[data-reveal]').forEach(el => el.classList.add('is-visible'));
+</script>
+{webAnalyticsToken && <script is:inline type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon={JSON.stringify({ token: webAnalyticsToken })}></script>}
+</body></html>

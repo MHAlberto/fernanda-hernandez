@@ -1,0 +1,39 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/shared/Breadcrumbs.astro';
+import EditorialLink from '../../components/shared/EditorialLink.astro';
+import '../../styles/blog.css';
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return posts.map(post => ({ params: { slug: post.id }, props: { post } }));
+}
+interface Props { post: CollectionEntry<'blog'>; }
+const { post } = Astro.props;
+const { Content } = await render(post);
+const related = (await getCollection('blog', ({ data }) => !data.draft)).filter(entry => entry.id !== post.id).slice(0, 2);
+const article = { '@context': 'https://schema.org', '@type': 'BlogPosting', headline: post.data.title, description: post.data.description, datePublished: post.data.publishDate.toISOString(), dateModified: (post.data.updatedDate || post.data.publishDate).toISOString(), author: { '@type': 'Person', name: post.data.author }, mainEntityOfPage: Astro.url.toString(), ...(post.data.image ? { image: new URL(post.data.image, Astro.site).toString() } : {}) };
+---
+<BaseLayout title={post.data.title} description={post.data.description} image={post.data.image} type="article" publishedTime={post.data.publishDate.toISOString()} modifiedTime={post.data.updatedDate?.toISOString()} jsonLd={article}>
+  <article>
+    <header class="page-hero page-hero--small article-header"><div class="container article-heading">
+      <Breadcrumbs items={[{label:'Inicio',href:'/'},{label:'Blog',href:'/blog/'},{label:post.data.title}]} />
+      <p class="eyebrow">{post.data.publishDate.toLocaleDateString('es-MX',{year:'numeric',month:'long',day:'numeric'})} · {post.data.author}</p>
+      <h1>{post.data.title}</h1><p>{post.data.description}</p>
+      <div class="article-tags">{post.data.tags.map(tag => <span>{tag}</span>)}</div>
+    </div></header>
+    {post.data.image && <div class="container article-cover organic-art"><span class="organic-blob" aria-hidden="true"></span><img src={post.data.image} alt={post.data.imageAlt || 'Ilustración que acompaña el artículo ' + post.data.title} width={post.data.imageWidth ?? 1256} height={post.data.imageHeight ?? 1256} loading="eager" /></div>}
+    <div class="section article-body"><div class:list={['container', 'article-layout', { 'article-layout--indexed': post.data.toc?.length }]}>
+      {post.data.toc && post.data.toc.length > 0 && <nav class="article-toc" aria-label="Índice del artículo">
+        <p class="eyebrow">En este artículo</p><ol>{post.data.toc.map((item, index) => <li><a href={'#' + item.id}><span>{String(index + 1).padStart(2, '0')}</span>{item.label}</a></li>)}</ol>
+      </nav>}
+      <div class="prose article-prose"><Content />
+        <p class="article-contact-note">Si te gustaría conversar sobre tu experiencia, puedes <a href="/agendar/">conocer cómo iniciar una primera sesión</a> o <a href="/contacto/">escribirme para resolver dudas</a>.</p>
+      </div>
+    </div></div>
+  </article>
+  {related.length > 0 && <section class="section section--sage related-articles"><div class="container"><p class="eyebrow">Sigue leyendo</p><h2>Otras preguntas para <em>explorar</em></h2><div class="blog-list">{related.map(entry => <article class="blog-row">
+    <a class="blog-row-image organic-art" href={'/blog/' + entry.id + '/'} aria-label={'Leer ' + entry.data.title}><span class="organic-blob" aria-hidden="true"></span>{entry.data.image && <img src={entry.data.image} alt={entry.data.imageAlt || 'Ilustración del artículo ' + entry.data.title} width={entry.data.imageWidth ?? 1256} height={entry.data.imageHeight ?? 1256} loading="lazy" />}</a>
+    <div><h3><a href={'/blog/' + entry.id + '/'}>{entry.data.title}</a></h3><p>{entry.data.description}</p><EditorialLink href={'/blog/' + entry.id + '/'} label="Leer artículo" /></div>
+  </article>)}</div></div></section>}
+</BaseLayout>

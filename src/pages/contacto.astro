@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SocialLinks from '../components/shared/SocialLinks.astro';
+import EditorialLink from '../components/shared/EditorialLink.astro';
+import { siteConfig } from '../data/site';
+import { whatsappUrl } from '../utils/whatsapp';
+import { MessageCircleHeart, Video, ArrowUpRight } from '@lucide/astro';
+const whatsapp = whatsappUrl(siteConfig.whatsapp.number, siteConfig.whatsapp.message);
+---
+<BaseLayout title="Contacto y citas en línea" description="Escribe a la Psic. Fernanda Hernández para pedir informes sobre psicoterapia en línea, resolver dudas o solicitar una primera sesión.">
+  <section class="page-hero contact-hero"><div class="container contact-hero-grid"><div>
+    <p class="eyebrow">Contacto · Sesiones en línea</p><h1>Cuando quieras, podemos empezar por <em>un mensaje</em></h1>
+    <p>Si estás pensando en iniciar terapia, puedes escribirme para pedir informes, contarme brevemente qué te gustaría explorar o resolver tus dudas antes de agendar.</p>
+    <div class="contact-primary-actions"><a class="booking-whatsapp" href={whatsapp} target="_blank" rel="noopener noreferrer"><MessageCircleHeart size={21} aria-hidden="true" /> Escribir por WhatsApp <ArrowUpRight size={18} aria-hidden="true" /></a><a class="editorial-link" href="/agendar/"><span>Agendar una primera sesión</span><ArrowUpRight size={18} aria-hidden="true" /></a></div>
+    {!siteConfig.whatsapp.number && <p class="booking-demo-note">WhatsApp abrirá un mensaje listo para enviar; el número de contacto se actualizará con los datos definitivos.</p>}
+  </div><figure class="organic-art contact-art"><span class="organic-blob organic-blob--sage" aria-hidden="true"></span><img src="/assets/03-ilustraciones-principales/ilustracion-psicologa-4.webp" alt="Ilustración de Fernanda durante una sesión de psicoterapia en línea" width="1256" height="1256" loading="eager" /></figure></div></section>
+  <section class="section section--sage contact-details"><div class="container contact-details-grid">
+    <div><p class="eyebrow"><Video size={19} aria-hidden="true" /> Modalidad</p><h2>Atención exclusivamente <em>en línea</em></h2><p>Las sesiones son por videollamada. Puedes conectarte desde un lugar privado donde te sientas con comodidad.</p><EditorialLink href="/en-linea/" label="Cómo funcionan las sesiones" accent /></div>
+    <div class="contact-social-block"><p class="eyebrow">También puedes encontrarme en</p><h2>Redes <em>sociales</em></h2><SocialLinks onlySocial /></div>
+  </div></section>
+</BaseLayout>

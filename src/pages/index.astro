@@ -1,0 +1,88 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import EditorialLink from '../components/shared/EditorialLink.astro';
+import AccompanimentIcon from '../components/shared/AccompanimentIcon.astro';
+import { Video, LockKeyhole, MessageCircleHeart, MessagesSquare, CalendarDays, ArrowUpRight, Heart } from '@lucide/astro';
+import { accompaniment } from '../data/accompaniment';
+import { siteConfig } from '../data/site';
+import { whatsappUrl } from '../utils/whatsapp';
+import { getCollection } from 'astro:content';
+import '../styles/home.css';
+const articleOrder = ['un-espacio-para-escucharte', 'empezar-terapia-sin-tener-todas-las-respuestas', 'cuando-algo-necesita-ser-escuchado'];
+const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+const posts = allPosts.filter(post => articleOrder.includes(post.id)).sort((a, b) => articleOrder.indexOf(a.id) - articleOrder.indexOf(b.id));
+const whatsappReasons = whatsappUrl(siteConfig.whatsapp.number, 'Hola, Fernanda. Me gustaría contarte brevemente qué estoy buscando y preguntar cómo iniciar un proceso de acompañamiento.');
+const structuredData = { '@context': 'https://schema.org', '@graph': [
+  { '@type': 'Person', '@id': new URL('/#fernanda', Astro.site).toString(), name: siteConfig.name, description: siteConfig.description, jobTitle: 'Psicóloga clínica' },
+  { '@type': 'ProfessionalService', name: siteConfig.name, description: siteConfig.description, provider: { '@id': new URL('/#fernanda', Astro.site).toString() }, url: new URL('/', Astro.site).toString() },
+] };
+---
+<BaseLayout title="Psicoterapia en línea con Fernanda Hernández" description={siteConfig.description} jsonLd={structuredData}>
+  <section class="home-hero" aria-labelledby="home-title">
+    <div class="container home-hero-inner">
+      <div class="home-hero-copy" data-reveal="fade-up">
+        <p class="eyebrow">Psicoterapia clínica · Sesiones en línea</p>
+        <h1 id="home-title">Un espacio<br />seguro <em>para ti</em></h1>
+        <p class="home-hero-description">Psicoterapia clínica con enfoque integrativo y psicodinámico. Un lugar para mirar lo que estás viviendo con calma y acompañamiento.</p>
+        <div class="home-hero-actions"><EditorialLink href="/agendar/" label="Agendar sesión" accent /><EditorialLink href="/enfoque/" label="Conocer mi enfoque" /></div>
+      </div>
+      <div class="home-hero-art" aria-label="Ilustración de Fernanda acompañando un proceso de psicoterapia">
+        <span class="hero-art-blob hero-art-blob--sage" aria-hidden="true"></span><span class="hero-art-blob hero-art-blob--sand" aria-hidden="true"></span>
+        <img src="/assets/03-ilustraciones-principales/ilustracion-psicologa-1.webp" alt="Ilustración cálida de una psicóloga sentada con su cuaderno, lista para escuchar" width="1256" height="1256" fetchpriority="high" />
+        <div class="hero-speech"><p>Hola, soy la Psic. Fernanda Hernández y estoy aquí para acompañarte.</p><Heart size={29} stroke-width={1.8} aria-hidden="true" /></div>
+        <span class="hero-spark" aria-hidden="true"><i></i><i></i><i></i></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section listening-section" aria-labelledby="listening-home"><div class="container split">
+    <div class="listening-copy"><p class="eyebrow">Un espacio propio</p><h2 id="listening-home">Un espacio para <em>escucharte</em></h2><p>No siempre necesitamos tener todas las respuestas. A veces basta con encontrar un espacio seguro para comenzar a mirar hacia dentro con más calma y claridad.</p><a class="editorial-link" href="/blog/un-espacio-para-escucharte/"><span>Leer por qué importa sentirse escuchada</span><ArrowUpRight size={18} aria-hidden="true" /></a></div>
+    <a class="listening-art organic-art" href="/blog/un-espacio-para-escucharte/" aria-label="Leer sobre tener un espacio para escucharte"><span class="organic-blob organic-blob--sage" aria-hidden="true"></span><span class="organic-blob organic-blob--rose" aria-hidden="true"></span><img src="/assets/03-ilustraciones-principales/ilustracion-psicologa-3.webp" alt="Ilustración de una persona en una pausa serena de reflexión" width="1256" height="1256" loading="lazy" /></a>
+  </div></section>
+
+  <section class="section approach-section" aria-labelledby="enfoque-home"><div class="container">
+    <p class="eyebrow">Mi forma de acompañar</p><h2 id="enfoque-home">Enfoque <em>terapéutico</em></h2>
+    <div class="approach-grid">
+      <a href="/enfoque/#integrativo"><span class="approach-index">01</span><h3>Enfoque <em>integrativo</em></h3><p>Permite adaptar distintas herramientas terapéuticas a las necesidades y circunstancias particulares de cada persona.</p><span class="editorial-inline">Cómo se trabaja ↗</span></a>
+      <a href="/enfoque/#psicodinamico"><span class="approach-index">02</span><h3>Enfoque <em>psicodinámico</em></h3><p>Busca comprender cómo experiencias, vínculos y patrones emocionales influyen en la manera en que pensamos, sentimos y nos relacionamos actualmente.</p><span class="editorial-inline">Cómo se trabaja ↗</span></a>
+    </div>
+    <EditorialLink href="/enfoque/" label="Leer sobre el enfoque terapéutico" accent />
+  </div></section>
+
+  <section class="section accompaniment-home" aria-labelledby="acompanamiento-home"><div class="container">
+    <p class="eyebrow">Acompañamiento</p><h2 id="acompanamiento-home">Tal vez llegaste aquí porque algo <em>necesita ser escuchado</em></h2>
+    <p class="notice">La psicoterapia puede abrir un espacio para explorar lo que hoy te ocupa. Estos motivos pueden servir como punto de partida; cada tema lleva a su explicación.</p>
+    <div class="accompaniment-preview">{accompaniment.map(item => <a class="accompaniment-preview-item" href={'/blog/cuando-algo-necesita-ser-escuchado/#' + item.id}>
+      <span class="accompaniment-preview-icon"><AccompanimentIcon icon={item.icon} /></span><span><strong>{item.title}</strong><span class="accompaniment-preview-summary">{item.summary}</span></span><ArrowUpRight size={18} aria-hidden="true" class="accompaniment-preview-arrow" />
+    </a>)}</div>
+    <div class="link-row"><EditorialLink href="/acompanamiento/" label="Ver todos los temas de acompañamiento" accent /><EditorialLink href="/blog/cuando-algo-necesita-ser-escuchado/" label="Leer la guía y sus fuentes" /></div>
+  </div></section>
+
+  <section class="section process-section section--sage" aria-labelledby="proceso-home"><div class="container">
+    <p class="eyebrow">Cómo empezar</p><h2 id="proceso-home">Tres pasos, <em>a tu ritmo</em></h2>
+    <div class="steps process-steps">
+      <a class="process-step" href="/contacto/"><span class="process-step-art"><img src="/assets/03-ilustraciones-principales/ilustracion-laptop.webp" alt="" aria-hidden="true" width="1256" height="1256" loading="lazy" /></span><MessageCircleHeart size={23} aria-hidden="true" /><span class="step-number">01</span><h3>Escríbeme</h3><p>Un mensaje breve es suficiente para pedir informes o resolver una duda.</p><span class="editorial-inline">Contactar ↗</span></a>
+      <a class="process-step" href={whatsappReasons} target="_blank" rel="noopener noreferrer"><span class="process-step-art"><img src="/assets/03-ilustraciones-principales/ilustracion-psicologa-3.webp" alt="" aria-hidden="true" width="1256" height="1256" loading="lazy" /></span><MessagesSquare size={23} aria-hidden="true" /><span class="step-number">02</span><h3>Cuéntame brevemente qué buscas</h3><p>Podemos hablar de lo que te gustaría explorar y aclarar cómo trabajo.</p><span class="editorial-inline">Enviar un primer mensaje ↗</span></a>
+      <a class="process-step" href="/agendar/"><span class="process-step-art"><img src="/assets/03-ilustraciones-principales/ilustracion-psicologa-4.webp" alt="" aria-hidden="true" width="1256" height="1256" loading="lazy" /></span><CalendarDays size={23} aria-hidden="true" /><span class="step-number">03</span><h3>Agendamos</h3><p>Acordamos fecha y horario para una sesión por videollamada.</p><span class="editorial-inline">Cómo agendar ↗</span></a>
+    </div>
+  </div></section>
+
+  <section class="section online-home" aria-labelledby="modalidad-home"><div class="container online-home-inner">
+    <div><p class="eyebrow">Psicoterapia en línea</p><h2 id="modalidad-home">Un encuentro cercano, <em>estés donde estés</em></h2><p>La atención es por videollamada. Solo necesitas conexión a internet y un espacio privado para hablar con comodidad.</p>
+      <div class="online-home-points"><span><Video size={20} aria-hidden="true" /> Videollamada</span><span><LockKeyhole size={20} aria-hidden="true" /> Privacidad</span><span><MessageCircleHeart size={20} aria-hidden="true" /> Conversación compartida</span></div>
+      <div class="link-row"><EditorialLink href="/en-linea/" label="Cómo funcionan las sesiones" accent /><EditorialLink href="/agendar/" label="Resolver dudas y agendar" /></div></div>
+    <a class="online-home-art organic-art" href="/en-linea/" aria-label="Conocer las sesiones de psicoterapia en línea"><span class="organic-blob" aria-hidden="true"></span><img src="/assets/03-ilustraciones-principales/ilustracion-laptop.webp" alt="Computadora para una sesión de psicoterapia en línea" width="1256" height="1256" loading="lazy" /></a>
+  </div></section>
+
+  <section class="section home-about section--rose" aria-labelledby="sobre-home"><div class="container split"><div>
+    <p class="eyebrow">Sobre mí</p><h2 id="sobre-home">Un proceso que se construye <em>en diálogo</em></h2>
+    <p>Mi trabajo parte de escuchar tu experiencia actual y comprenderla dentro de su contexto. Las preguntas, prioridades y objetivos se conversan contigo.</p><EditorialLink href="/sobre-mi/" label="Conocer a Fernanda y su forma de trabajar" accent />
+  </div><a class="about-home-art organic-art" href="/sobre-mi/" aria-label="Conocer a Fernanda"><span class="organic-blob organic-blob--rose" aria-hidden="true"></span><img src="/assets/03-ilustraciones-principales/ilustracion-psicologa-2.webp" alt="Ilustración de Fernanda en una pausa tranquila" width="1256" height="1256" loading="lazy" /></a></div></section>
+
+  <section class="section home-journal" aria-labelledby="articulos-home"><div class="container">
+    <div class="home-journal-heading"><div><p class="eyebrow">Lecturas para acompañarte</p><h2 id="articulos-home">Del blog, <em>con calma</em></h2></div><EditorialLink href="/blog/" label="Ver todos los artículos" /></div>
+    <div class="home-journal-grid">{posts.map((post, index) => <article class="home-journal-card"><a class="home-journal-image organic-art" href={'/blog/' + post.id + '/'} aria-label={'Leer ' + post.data.title}><span class:list={['organic-blob', index === 1 ? 'organic-blob--rose' : '']} aria-hidden="true"></span>{post.data.image && <img src={post.data.image} alt={post.data.imageAlt || 'Ilustración para el artículo ' + post.data.title} width={post.data.imageWidth ?? 1256} height={post.data.imageHeight ?? 1256} loading="lazy" />}</a>
+      <div><p class="eyebrow">{post.data.tags[0]}</p><h3><a href={'/blog/' + post.id + '/'}>{post.data.title}</a></h3><p>{post.data.description}</p><EditorialLink href={'/blog/' + post.id + '/'} label="Leer artículo" /></div>
+    </article>)}</div>
+  </div></section>
+</BaseLayout>
