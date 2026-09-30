@@ -2,7 +2,7 @@
 title: "Cuando algo necesita ser escuchado: motivos para iniciar terapia"
 description: "Una guía cercana sobre ansiedad, autoestima, vínculos, duelos, cambios y emociones; con referencias de salud en español e inglés."
 publishDate: 2026-09-27
-updatedDate: 2026-09-29
+updatedDate: 2026-09-30
 author: "Psic. Fernanda Hernández"
 image: "/assets/03-ilustraciones-principales/ilustracion-psicologa-3.webp"
 imageAlt: "Ilustración de una persona en una pausa de reflexión y escucha"
@@ -40,11 +40,15 @@ La ansiedad puede incluir preocupación persistente, tensión o una sensación d
 
 En terapia podemos observar cuándo aparece la preocupación, qué la intensifica y cómo la experimentas en el cuerpo, las rutinas y las relaciones. No se trata de exigirte que desaparezca de inmediato, sino de comprender lo que te ocurre y considerar qué apoyos podrían servirte. [MedlinePlus: ansiedad](https://medlineplus.gov/spanish/anxiety.html) · [NIMH, in English: Anxiety Disorders](https://www.nimh.nih.gov/health/topics/anxiety-disorders).
 
+Si quieres empezar con preguntas concretas y acciones cotidianas, lee la guía sobre [ansiedad y estrés: señales y técnicas para empezar](/blog/ansiedad-y-estres/).
+
 <h2 id="autoestima-autoconocimiento">Autoestima y autoconocimiento</h2>
 
 La relación que tenemos con nosotras y nosotros mismos se nota en cómo interpretamos los errores, reconocemos necesidades y ponemos límites. Quizá te comparas con frecuencia, dudas de tus decisiones o te cuesta identificar qué deseas. Esto no define tu valor: puede ser una invitación a mirar con curiosidad las ideas y expectativas que has aprendido.
 
 La psicoterapia puede abrir preguntas sobre la voz interna, la imagen propia y la manera en que las experiencias y los vínculos han influido en ellas. No consiste en obligarte a sentir confianza todo el tiempo. El NHS comparte ideas prácticas, en inglés, para [fortalecer una autoestima baja](https://www.nhs.uk/mental-health/self-help/tips-and-support/raise-low-self-esteem/); en terapia su sentido se explora desde tu historia particular.
+
+Puedes continuar con la guía de [autoestima y autoconocimiento](/blog/autoestima-y-autoconocimiento/).
 
 <h2 id="relaciones-vinculos">Relaciones y vínculos</h2>
 
@@ -52,11 +56,15 @@ Los vínculos pueden ser fuente de pertenencia y apoyo, y también de tensión. 
 
 Explorar cómo vives tus relaciones puede ayudar a comprender qué te importa y qué se vuelve difícil en ellas. El NHS comparte una lectura en inglés sobre [relaciones saludables y bienestar emocional](https://www.nhs.uk/every-mind-matters/lifes-challenges/maintaining-healthy-relationships-and-mental-wellbeing/). Es información general; cada vínculo tiene su propio contexto.
 
+Lee también [relaciones y vínculos: cómo hablar de un conflicto](/blog/relaciones-y-vinculos/).
+
 <h2 id="duelos">Duelos</h2>
 
 Un duelo puede aparecer tras la muerte de alguien, una separación, el fin de una amistad, una pérdida de salud o el cierre de una etapa. No hay una secuencia fija de emociones ni un calendario universal. Puedes sentir tristeza, enojo, alivio, desconcierto o seguir con tus actividades habituales.
 
 En un espacio terapéutico podemos dar lugar a lo que cambió y a lo que esa pérdida significa para ti, sin apresurar una manera correcta de sentir. La guía del NHS sobre [duelo, pérdidas y fallecimiento, en inglés](https://www.nhs.uk/mental-health/feelings-symptoms-behaviours/feelings-and-symptoms/grief-bereavement-loss/) describe reacciones diversas y cuándo conviene buscar apoyo.
+
+Si estás atravesando una pérdida, esta guía sobre [duelo y pérdida](/blog/duelo-y-perdida/) amplía preguntas comunes y opciones de apoyo.
 
 <h2 id="cambios-importantes">Cambios importantes</h2>
 
@@ -64,17 +72,23 @@ Una mudanza, una nueva responsabilidad, una decisión laboral o una transición 
 
 Conversar sobre una transición permite mirar lo que esperas, lo que te preocupa y qué recursos tienes a mano. No se trata de decidir por ti: podemos comprender las distintas partes de la experiencia para que valores con mayor claridad tus siguientes pasos. [Every Mind Matters, del NHS, reúne orientación en inglés para afrontar desafíos de la vida](https://www.nhs.uk/every-mind-matters/lifes-challenges/).
 
+Lee sobre [cambios importantes y cómo atravesar la incertidumbre](/blog/cambios-importantes/).
+
 <h2 id="manejo-emocional">Manejo emocional</h2>
 
 A veces una emoción llega con mucha intensidad; otras, cuesta reconocer qué sentimos hasta que aparece cansancio, tensión o ganas de alejarnos. Aprender a observar y nombrar una emoción no significa tener que controlarla por completo. Puede ayudar a notar qué situación la rodea y qué necesidad o límite merece atención.
 
 En psicoterapia podemos explorar cómo aprendiste a responder a ciertas emociones y qué alternativas se sienten posibles. La [Asociación Estadounidense de Psicología describe la psicoterapia, en inglés](https://www.apa.org/topics/psychotherapy/understanding), como un proceso colaborativo para trabajar pensamientos, sentimientos y conductas; la forma de abordarlos depende de cada persona.
 
+Encuentra una pausa práctica en la guía sobre [manejo emocional cuando una emoción te rebasa](/blog/manejo-emocional/).
+
 <h2 id="conflictos-personales">Conflictos personales</h2>
 
 Hay decisiones en las que ninguna opción parece sencilla. Podemos querer cercanía y, al mismo tiempo, necesitar distancia; desear un cambio y sentir miedo de perder algo importante. Estas tensiones no significan que estés haciendo algo mal. A veces muestran que hay varias necesidades valiosas en juego.
 
 Explorar un conflicto permite entender de dónde vienen las expectativas, qué deseas cuidar y qué temes que suceda. No siempre hace falta alcanzar una conclusión inmediata. La conversación puede ayudarte a ver los matices y tomar tus decisiones con más conciencia. El [Instituto Nacional de Salud Mental de Estados Unidos explica distintos enfoques de psicoterapia, en inglés](https://www.nimh.nih.gov/health/topics/psychotherapies).
+
+Para ordenar opciones sin exigirte una respuesta perfecta, consulta la guía de [conflictos personales y decisiones difíciles](/blog/conflictos-personales/).
 
 <h2 id="tu-experiencia">Tu motivo, en tus palabras</h2>
 

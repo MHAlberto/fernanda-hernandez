@@ -10,11 +10,11 @@ import { accompaniment } from '../data/accompaniment';
   <section class="section accompaniment-intro"><div class="container split">
     <div><p class="eyebrow">Puntos de partida posibles</p><h2>No son etiquetas; son <em>temas para conversar</em></h2></div>
     <div class="prose"><p>Ansiedad, una pérdida, un cambio o una relación difícil pueden sentirse de maneras distintas en cada persona. Los siguientes temas no son diagnósticos ni una lista que tengas que cumplir: son puertas de entrada para poner en palabras lo que estás viviendo.</p>
-      <p>Al elegir uno, puedes leer una explicación breve y acceder a la sección correspondiente de la guía, con referencias confiables para seguir explorando.</p></div>
+      <p>Al elegir un tema, abrirás una guía propia con preguntas frecuentes, propuestas cuidadosas para empezar a explorar y referencias confiables.</p></div>
   </div></section>
   <section class="section section--sage accompaniment-index" aria-labelledby="tema-title"><div class="container">
     <p class="eyebrow">¿Qué te gustaría mirar?</p><h2 id="tema-title">Temas que podemos <em>explorar</em></h2>
-    <div class="accompaniment-open-list">{accompaniment.map((item, index) => <a class="accompaniment-open-item" href={'/blog/cuando-algo-necesita-ser-escuchado/#' + item.id}>
+    <div class="accompaniment-open-list">{accompaniment.map((item, index) => <a class="accompaniment-open-item" href={'/blog/' + item.articleSlug + '/'}>
       <span class="open-item-index">{String(index + 1).padStart(2, '0')}</span><span class="open-item-icon"><AccompanimentIcon icon={item.icon} size={27} /></span>
       <span class="open-item-copy"><strong>{item.title}</strong><span>{item.summary}</span></span><span class="open-item-action">Leer explicación <span aria-hidden="true">↗</span></span>
     </a>)}</div>
@@ -22,7 +22,7 @@ import { accompaniment } from '../data/accompaniment';
   </div></section>
   <section class="section accompaniment-next"><div class="container split">
     <div class="organic-art accompaniment-art"><span class="organic-blob organic-blob--rose" aria-hidden="true"></span><img src="/assets/03-ilustraciones-principales/ilustracion-psicologa-3.webp" alt="Ilustración de una persona en una pausa de reflexión" width="1256" height="1256" loading="lazy" /></div>
-    <div><p class="eyebrow">Leer la guía completa</p><h2>Empezar por lo que <em>hoy te ocupa</em></h2><p>Reuní una descripción cercana de estos motivos de consulta y referencias de salud en español e inglés para ampliar cada tema con calma.</p>
-      <div class="link-row"><EditorialLink href="/blog/cuando-algo-necesita-ser-escuchado/" label="Abrir la guía y sus fuentes" accent /><EditorialLink href="/agendar/" label="Preguntar cómo empezar" /></div></div>
+    <div><p class="eyebrow">Lecturas para seguir explorando</p><h2>Información clara, <em>tema por tema</em></h2><p>Cada guía reúne preguntas, referencias en español o inglés y una invitación a conversar si quieres explorar el acompañamiento.</p>
+      <div class="link-row"><EditorialLink href="/blog/" label="Ver todos los artículos" accent /><EditorialLink href="/agendar/" label="Preguntar cómo empezar" /></div></div>
   </div></section>
 </BaseLayout>

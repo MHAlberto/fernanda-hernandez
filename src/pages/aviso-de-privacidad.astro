@@ -1,9 +1,51 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageIntro from '../components/shared/PageIntro.astro';
+
 const analyticsEnabled = import.meta.env.PROD && Boolean(import.meta.env.PUBLIC_CF_WEB_ANALYTICS_TOKEN?.trim());
+const privacyEmail = import.meta.env.PUBLIC_PRIVACY_EMAIL?.trim();
+const privacyAddress = import.meta.env.PUBLIC_PRIVACY_CONTACT_ADDRESS?.trim();
+const noticeReady = Boolean(privacyEmail && privacyAddress);
+const pendingDetails = [...(!privacyAddress ? ['el domicilio para notificaciones'] : []), ...(!privacyEmail ? ['un correo de privacidad'] : [])];
 ---
-<BaseLayout title="Aviso de privacidad" description="Información sobre privacidad del sitio web de la Psic. Fernanda Hernández." noindex>
-  <PageIntro eyebrow="Información del sitio" title="Aviso de privacidad" description="Esta página informa sobre el tratamiento de datos asociado a la navegación y los canales de contacto." />
-  <section class="section section--sage"><div class="container narrow prose"><h2>Datos en este sitio</h2><p>Este sitio no incluye formularios ni recoge información clínica directamente. Si decides usar un enlace externo, como WhatsApp o una red social, la comunicación ocurre en esa plataforma y se rige también por sus condiciones de privacidad.</p><h2>Medición del sitio</h2>{analyticsEnabled ? <p>Este sitio utiliza Cloudflare Web Analytics para consultar datos agregados de navegación y rendimiento, como páginas visitadas, origen de la visita, navegador, dispositivo y tiempos de carga. Cloudflare indica que su herramienta no utiliza cookies ni almacenamiento local para estas métricas y que no registra las direcciones IP en sus bases de datos. <a href="https://developers.cloudflare.com/web-analytics/about/">Consulta cómo funciona Cloudflare Web Analytics.</a></p> : <p>La analítica aún no está activada. Si se habilita Cloudflare Web Analytics, esta página describirá los datos agregados de navegación y rendimiento que mide el servicio.</p>}<h2>Versión definitiva</h2><p>Este texto es informativo y provisional. Antes de recibir consultas, debe revisarse y sustituirse por un aviso de privacidad definitivo que identifique a la persona responsable, sus medios de contacto y las finalidades del tratamiento de datos.</p></div></section>
+<BaseLayout title="Aviso de privacidad" description="Aviso de privacidad del sitio y de los canales digitales de la Psic. Fernanda Hernández." noindex>
+  <PageIntro eyebrow="Información y derechos" title="Aviso de privacidad" description="Cómo se trata la información al visitar este sitio y al solicitar información sobre psicoterapia en línea." />
+  <section class="section section--sage"><div class="container narrow prose privacy-notice">
+    <p class="eyebrow">Última revisión · 30 de septiembre de 2026</p>
+    {!noticeReady && <p class="privacy-notice-status" role="note">La versión integral aún requiere confirmar {pendingDetails.join(' y ')}. Estos datos se incorporarán antes de publicar el aviso como definitivo.</p>}
+
+    <h2>Quién es responsable</h2>
+    <p>La responsable del tratamiento es Fernanda Hernández, quien ofrece psicoterapia clínica exclusivamente en línea para personas que se encuentran en México. El domicilio que debe indicarse en este aviso es para notificaciones de privacidad; no es un consultorio ni una ubicación de sesiones.</p>
+    {privacyAddress ? <p><strong>Domicilio para notificaciones:</strong> {privacyAddress}</p> : <p><strong>Domicilio para notificaciones:</strong> pendiente de confirmar.</p>}
+    {privacyEmail ? <p><strong>Contacto de privacidad:</strong> <a href={'mailto:' + privacyEmail}>{privacyEmail}</a></p> : <p><strong>Contacto de privacidad:</strong> pendiente de confirmar.</p>}
+
+    <h2>Qué información puede tratarse</h2>
+    <p>El sitio no tiene formularios, cuentas de usuario, pagos ni agenda integrada. Al navegar, el proveedor de alojamiento puede procesar datos técnicos necesarios para entregar la página. Si solicitas información por un canal externo, la plataforma correspondiente también procesa los datos que compartas bajo sus propias condiciones.</p>
+    <p>Para responder una consulta o coordinar una sesión pueden utilizarse datos de contacto y disponibilidad. Si después inicias psicoterapia, podrías compartir información personal sensible relacionada con tu salud. Procura no incluir detalles íntimos en un primer mensaje; cualquier dato necesario para el servicio debe tratarse con el consentimiento y las medidas correspondientes.</p>
+
+    <h2>Para qué se utiliza la información</h2>
+    <ul>
+      <li>Responder preguntas sobre la modalidad, el enfoque y la disponibilidad.</li>
+      <li>Coordinar y confirmar una sesión cuando ambas partes acuerden hacerlo.</li>
+      <li>Prestar el servicio profesional solicitado y cumplir las obligaciones aplicables.</li>
+      <li>Mantener la seguridad y el funcionamiento del sitio.</li>
+    </ul>
+    <p>Este sitio no ofrece suscripciones, publicidad personalizada ni venta de datos.</p>
+
+    <h2>Analítica de navegación</h2>
+    {analyticsEnabled ? <p>Este sitio usa Cloudflare Web Analytics para revisar datos agregados de visitas, páginas consultadas, procedencia general, navegador y rendimiento. Cloudflare informa que su herramienta no utiliza cookies ni conserva direcciones IP individuales para estas métricas. <a href="https://developers.cloudflare.com/web-analytics/about/">Consulta la documentación de Cloudflare Web Analytics</a>.</p> : <p>Cloudflare Web Analytics no está activado en este despliegue. Si se configura, este aviso se actualizará para describir la medición agregada que utiliza.</p>}
+    <p>La analítica de Cloudflare muestra tendencias del sitio y rendimiento técnico; no identifica a una persona ni registra clics de agenda como conversiones.</p>
+
+    <h2>Canales externos</h2>
+    <p>WhatsApp, redes sociales y la plataforma de videollamada son servicios externos. Si decides utilizarlos, revisa sus avisos de privacidad y comparte solo la información necesaria para iniciar la conversación. Cada proveedor puede tratar datos según sus propias políticas.</p>
+    <p>Este aviso describe el sitio y el contacto digital inicial; no sustituye el aviso integral y el consentimiento que deben explicarse antes de tratar información clínica sensible durante un proceso de psicoterapia. Evita compartir detalles de salud en redes sociales.</p>
+
+    <h2>Cómo ejercer derechos sobre tus datos</h2>
+    <p>La legislación mexicana contempla los derechos de acceso, rectificación, cancelación y oposición (ARCO), además de los mecanismos para revocar el consentimiento cuando corresponda. Para iniciar una solicitud, escribe al contacto de privacidad indicado arriba y describe el derecho que deseas ejercer. No es necesario enviar información clínica en el primer mensaje; si se requiere acreditar identidad, se te indicará un medio adecuado.</p>
+    {!privacyEmail && <p>El correo para recibir y dar seguimiento a solicitudes ARCO se añadirá cuando quede confirmado.</p>}
+    <p>Consulta la <a href="https://www.diputados.gob.mx/LeyesBiblio/pdf/LFPDPPP.pdf">Ley Federal de Protección de Datos Personales en Posesión de los Particulares</a>.</p>
+
+    <h2>Cambios a este aviso</h2>
+    <p>Si cambian los canales, finalidades o proveedores que intervienen, el aviso se actualizará en esta misma página con su fecha de revisión.</p>
+  </div></section>
 </BaseLayout>

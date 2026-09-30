@@ -8,22 +8,22 @@ import { siteConfig } from '../data/site';
 import { whatsappUrl } from '../utils/whatsapp';
 import { getCollection } from 'astro:content';
 import '../styles/home.css';
-const articleOrder = ['un-espacio-para-escucharte', 'empezar-terapia-sin-tener-todas-las-respuestas', 'cuando-algo-necesita-ser-escuchado'];
+const articleOrder = ['ansiedad-y-estres', 'psicologa-en-linea-mexico', 'cuando-algo-necesita-ser-escuchado'];
 const allPosts = await getCollection('blog', ({ data }) => !data.draft);
 const posts = allPosts.filter(post => articleOrder.includes(post.id)).sort((a, b) => articleOrder.indexOf(a.id) - articleOrder.indexOf(b.id));
 const whatsappReasons = whatsappUrl(siteConfig.whatsapp.number, 'Hola, Fernanda. Me gustaría contarte brevemente qué estoy buscando y preguntar cómo iniciar un proceso de acompañamiento.');
 const structuredData = { '@context': 'https://schema.org', '@graph': [
   { '@type': 'Person', '@id': new URL('/#fernanda', Astro.site).toString(), name: siteConfig.name, description: siteConfig.description, jobTitle: 'Psicóloga clínica' },
-  { '@type': 'ProfessionalService', name: siteConfig.name, description: siteConfig.description, provider: { '@id': new URL('/#fernanda', Astro.site).toString() }, url: new URL('/', Astro.site).toString() },
+  { '@type': 'ProfessionalService', name: siteConfig.name, description: siteConfig.description, provider: { '@id': new URL('/#fernanda', Astro.site).toString() }, url: new URL('/', Astro.site).toString(), areaServed: { '@type': 'Country', name: siteConfig.serviceArea } },
 ] };
 ---
 <BaseLayout title="Psicoterapia en línea con Fernanda Hernández" description={siteConfig.description} jsonLd={structuredData}>
   <section class="home-hero" aria-labelledby="home-title">
     <div class="container home-hero-inner">
       <div class="home-hero-copy" data-reveal="fade-up">
-        <p class="eyebrow">Psicoterapia clínica · Sesiones en línea</p>
+        <p class="eyebrow">Psicoterapia clínica · En línea en México</p>
         <h1 id="home-title">Un espacio <br />seguro <em>para ti</em></h1>
-        <p class="home-hero-description">Psicoterapia clínica con enfoque integrativo y psicodinámico. Sesiones por videollamada para mirar lo que estás viviendo con calma y acompañamiento.</p>
+        <p class="home-hero-description">Psicoterapia clínica con enfoque integrativo y psicodinámico. Un espacio de escucha en línea para personas en México.</p>
         <div class="home-hero-actions"><EditorialLink href="/agendar/" label="Agendar sesión" accent /><EditorialLink href="/enfoque/" label="Conocer mi enfoque" /></div>
       </div>
       <div class="home-hero-art" aria-label="Ilustración de Fernanda acompañando un proceso de psicoterapia">
@@ -52,7 +52,7 @@ const structuredData = { '@context': 'https://schema.org', '@graph': [
   <section class="section accompaniment-home" aria-labelledby="acompanamiento-home"><div class="container">
     <p class="eyebrow">Acompañamiento</p><h2 id="acompanamiento-home">Tal vez llegaste aquí porque algo <em>necesita ser escuchado</em></h2>
     <p class="notice">La psicoterapia puede abrir un espacio para explorar lo que hoy te ocupa. Estos motivos pueden servir como punto de partida; cada tema lleva a su explicación.</p>
-    <div class="accompaniment-preview">{accompaniment.map(item => <a class="accompaniment-preview-item" href={'/blog/cuando-algo-necesita-ser-escuchado/#' + item.id}>
+    <div class="accompaniment-preview">{accompaniment.map(item => <a class="accompaniment-preview-item" href={'/blog/' + item.articleSlug + '/'}>
       <span class="accompaniment-preview-icon"><AccompanimentIcon icon={item.icon} /></span><span><strong>{item.title}</strong><span class="accompaniment-preview-summary">{item.summary}</span></span><ArrowUpRight size={18} aria-hidden="true" class="accompaniment-preview-arrow" />
     </a>)}</div>
     <div class="link-row"><EditorialLink href="/acompanamiento/" label="Ver todos los temas de acompañamiento" accent /><EditorialLink href="/blog/cuando-algo-necesita-ser-escuchado/" label="Leer la guía y sus fuentes" /></div>
@@ -68,7 +68,7 @@ const structuredData = { '@context': 'https://schema.org', '@graph': [
   </div></section>
 
   <section class="section online-home" aria-labelledby="modalidad-home"><div class="container online-home-inner">
-    <div><p class="eyebrow">Psicoterapia en línea</p><h2 id="modalidad-home">Un encuentro cercano, <em>estés donde estés</em></h2><p>La atención es por videollamada. Solo necesitas conexión a internet y un espacio privado para hablar con comodidad.</p>
+    <div><p class="eyebrow">Psicoterapia en línea</p><h2 id="modalidad-home">Un encuentro cercano, <em>desde cualquier lugar de México</em></h2><p>Las sesiones son por videollamada para personas que se encuentran en México. Al escribir, confirmamos disponibilidad y el horario que corresponda a tu zona.</p>
       <div class="online-home-points"><a href="/en-linea/#enlace"><Video size={20} aria-hidden="true" /> Cómo conectarte</a><a href="/en-linea/#antes-de-conectarte"><LockKeyhole size={20} aria-hidden="true" /> Preparar tu espacio</a><a href="/agendar/#antes-de-agendar"><MessageCircleHeart size={20} aria-hidden="true" /> Resolver tus dudas</a></div>
       <div class="link-row"><EditorialLink href="/en-linea/" label="Cómo funcionan las sesiones" accent /><EditorialLink href="/agendar/" label="Resolver dudas y agendar" /></div></div>
     <a class="online-home-art organic-art" href="/en-linea/" aria-label="Conocer las sesiones de psicoterapia en línea"><span class="organic-blob" aria-hidden="true"></span><img src="/assets/03-ilustraciones-principales/ilustracion-laptop.webp" alt="Computadora para una sesión de psicoterapia en línea" width="1256" height="1256" loading="lazy" /></a>
