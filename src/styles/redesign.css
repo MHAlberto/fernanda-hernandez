@@ -34,7 +34,7 @@ body{background:var(--cream);color:var(--text)}
 .organic-art>.organic-blob--sage{background:#DCE8DE;transform:rotate(-7deg)}
 .prose{text-align:justify;hyphens:auto}
 .prose a{color:var(--forest);text-decoration:underline;text-decoration-color:var(--terra);text-underline-offset:4px}
-.prose h2,.prose h3{scroll-margin-top:120px}
+.prose h2,.prose h3{scroll-margin-top:120px;text-align:left;hyphens:none;word-break:normal;overflow-wrap:normal}
 .eyebrow{color:#547b6b;letter-spacing:.18em}
 h1,h2,h3{color:var(--forest)}
 h1 em,h2 em,h3 em{color:#698F84}
