@@ -36,3 +36,10 @@
 .related-articles .blog-list{gap:25px}
 @media(max-width:900px){.article-layout.article-layout--indexed{grid-template-columns:1fr;gap:22px}.article-toc{position:static;padding:0}.article-toc ol{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 22px}.blog-feature{gap:35px}}
 @media(max-width:700px){.blog-feature,.blog-row{grid-template-columns:1fr}.blog-feature-art{min-height:270px}.blog-row-image{min-height:225px}.blog-row>div{padding:0 0 10px}.article-heading h1{font-size:clamp(3rem,12vw,4.5rem)}.article-cover{min-height:230px}.article-body{padding-top:38px}.article-toc ol{grid-template-columns:1fr}.article-prose{text-align:left;hyphens:none}.article-prose>p:first-of-type{font-size:1.55rem}}
+
+.article-meta{display:flex;flex-wrap:wrap;gap:8px 22px;line-height:1.7;letter-spacing:.12em}
+.article-toc{top:156px;max-height:calc(100dvh - 184px);overflow-y:auto;scrollbar-width:thin;padding-right:8px}
+.article-toc a{padding:5px 0;position:relative}.article-toc a[aria-current=location]{color:#29433f;font-weight:600}.article-toc a[aria-current=location] span{color:#bb735d}
+.article-prose .article-back{display:inline-flex;align-items:center;min-height:44px;font-size:.9rem;margin-top:12px}
+@media(max-width:980px){.article-toc{top:124px;max-height:calc(100dvh - 150px)}}
+@media(max-width:900px){.article-toc{max-height:none;overflow:visible}}

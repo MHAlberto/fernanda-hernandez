@@ -1,0 +1,10 @@
+export const sessionFaqs = [
+  { id: 'primera-sesion', q: '¿Necesito saber exactamente qué quiero trabajar?', a: 'Puedes llegar con una pregunta, una inquietud o la sensación de que algo necesita atención. La primera sesión nos permite conversar sobre lo que te trae y aclarar cómo trabajaríamos en conjunto.' },
+  { id: 'duracion-y-costo', q: '¿Cuánto dura una sesión y cuál es el costo?', a: 'Consulta por WhatsApp la duración y los honorarios antes de confirmar tu cita. También puedes preguntar por las formas de pago y las condiciones para cambiar un horario.' },
+  { id: 'horarios', q: '¿Cómo elegimos el horario?', a: 'Al escribir, indica qué días y momentos del día te funcionan. Si estás en otra ciudad, menciona tu zona horaria para que podamos confirmar la misma hora de encuentro.' },
+  { id: 'enlace', q: '¿Cómo recibo el enlace de la videollamada?', a: 'Al agendar, acordamos la plataforma y cómo recibirás el enlace. Antes de la sesión, revisa que puedas abrirlo y que tu dispositivo tenga acceso al micrófono y la cámara.' },
+  { id: 'conexion', q: '¿Qué pasa si falla la conexión?', a: 'Antes de comenzar, acordamos cómo volver a comunicarnos si la llamada se interrumpe. Si tienes dificultades para entrar, avisa por el canal de contacto que hayamos definido.' },
+  { id: 'dispositivo', q: '¿Puedo conectarme desde mi celular?', a: 'Puedes usar un celular, una tableta o una computadora compatible con la plataforma acordada. Comprueba la cámara, el audio y la conexión; si usas el celular, apóyalo en un lugar estable para conversar con comodidad.' },
+  { id: 'privacidad', q: '¿Qué espacio necesito para conectarme?', a: 'Busca un lugar donde puedas conversar sin interrupciones y donde otras personas no escuchen la sesión. Los audífonos pueden ayudar a que el audio de la llamada no se reproduzca en voz alta.' },
+  { id: 'confirmacion', q: '¿Enviar un mensaje ya confirma mi cita?', a: 'El mensaje inicia la conversación. La cita queda agendada cuando acordemos y confirmemos fecha, horario y los detalles del encuentro.' },
+] as const;

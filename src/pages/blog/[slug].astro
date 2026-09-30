@@ -11,6 +11,7 @@ export async function getStaticPaths() {
 interface Props { post: CollectionEntry<'blog'>; }
 const { post } = Astro.props;
 const { Content } = await render(post);
+const readingMinutes = Math.max(1, Math.ceil((post.body ?? '').split(/\s+/).filter(Boolean).length / 220));
 const related = (await getCollection('blog', ({ data }) => !data.draft)).filter(entry => entry.id !== post.id).slice(0, 2);
 const article = { '@context': 'https://schema.org', '@type': 'BlogPosting', headline: post.data.title, description: post.data.description, datePublished: post.data.publishDate.toISOString(), dateModified: (post.data.updatedDate || post.data.publishDate).toISOString(), author: { '@type': 'Person', name: post.data.author }, mainEntityOfPage: Astro.url.toString(), ...(post.data.image ? { image: new URL(post.data.image, Astro.site).toString() } : {}) };
 ---
@@ -18,17 +19,17 @@ const article = { '@context': 'https://schema.org', '@type': 'BlogPosting', head
   <article>
     <header class="page-hero page-hero--small article-header"><div class="container article-heading">
       <Breadcrumbs items={[{label:'Inicio',href:'/'},{label:'Blog',href:'/blog/'},{label:post.data.title}]} />
-      <p class="eyebrow">{post.data.publishDate.toLocaleDateString('es-MX',{year:'numeric',month:'long',day:'numeric'})} · {post.data.author}</p>
+      <p class="eyebrow article-meta"><time datetime={post.data.publishDate.toISOString()}>{post.data.publishDate.toLocaleDateString('es-MX',{year:'numeric',month:'long',day:'numeric',timeZone:'UTC'})}</time><span>{post.data.author}</span><span>{readingMinutes} min de lectura</span></p>
       <h1>{post.data.title}</h1><p>{post.data.description}</p>
       <div class="article-tags">{post.data.tags.map(tag => <span>{tag}</span>)}</div>
     </div></header>
     {post.data.image && <div class="container article-cover organic-art"><span class="organic-blob" aria-hidden="true"></span><img src={post.data.image} alt={post.data.imageAlt || 'Ilustración que acompaña el artículo ' + post.data.title} width={post.data.imageWidth ?? 1256} height={post.data.imageHeight ?? 1256} loading="eager" /></div>}
     <div class="section article-body"><div class:list={['container', 'article-layout', { 'article-layout--indexed': post.data.toc?.length }]}>
       {post.data.toc && post.data.toc.length > 0 && <nav class="article-toc" aria-label="Índice del artículo">
-        <p class="eyebrow">En este artículo</p><ol>{post.data.toc.map((item, index) => <li><a href={'#' + item.id}><span>{String(index + 1).padStart(2, '0')}</span>{item.label}</a></li>)}</ol>
+        <p class="eyebrow" id="article-index">En este artículo</p><ol>{post.data.toc.map((item, index) => <li><a href={'#' + item.id}><span>{String(index + 1).padStart(2, '0')}</span>{item.label}</a></li>)}</ol>
       </nav>}
       <div class="prose article-prose"><Content />
-        <p class="article-contact-note">Si te gustaría conversar sobre tu experiencia, puedes <a href="/agendar/">conocer cómo iniciar una primera sesión</a> o <a href="/contacto/">escribirme para resolver dudas</a>.</p>
+        <p class="article-contact-note">Si te gustaría conversar sobre tu experiencia, puedes <a href="/agendar/">solicitar una primera sesión en línea</a> o <a href="/contacto/">escribirme para resolver dudas</a>.</p><a class="article-back" href="/blog/">← Volver a las lecturas del blog</a>
       </div>
     </div></div>
   </article>
@@ -37,3 +38,21 @@ const article = { '@context': 'https://schema.org', '@type': 'BlogPosting', head
     <div><h3><a href={'/blog/' + entry.id + '/'}>{entry.data.title}</a></h3><p>{entry.data.description}</p><EditorialLink href={'/blog/' + entry.id + '/'} label="Leer artículo" /></div>
   </article>)}</div></div></section>}
 </BaseLayout>
+
+<script>
+  const tocLinks = [...document.querySelectorAll<HTMLAnchorElement>('.article-toc a[href^="#"]')];
+  const sections = tocLinks.map(link => document.getElementById(decodeURIComponent(link.hash.slice(1))));
+  let scheduled = false;
+  function updateSection() {
+    const threshold = (document.querySelector('.site-header')?.getBoundingClientRect().height ?? 140) + 80;
+    let current = -1;
+    sections.forEach((section, index) => { if (section && section.getBoundingClientRect().top <= threshold) current = index; });
+    tocLinks.forEach((link, index) => { if (index === current) link.setAttribute('aria-current', 'location'); else link.removeAttribute('aria-current'); });
+    scheduled = false;
+  }
+  if (tocLinks.length) {
+    document.addEventListener('scroll', () => { if (!scheduled) { scheduled = true; requestAnimationFrame(updateSection); } }, { passive: true });
+    window.addEventListener('resize', updateSection);
+    updateSection();
+  }
+</script>

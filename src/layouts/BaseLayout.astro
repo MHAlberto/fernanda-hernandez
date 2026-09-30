@@ -20,6 +20,7 @@ const { title, description, image, noindex, type, publishedTime, modifiedTime, j
 </head><body><a class="skip-link" href="#main">Saltar al contenido</a><Header /><main id="main"><slot /></main><Footer /><WhatsAppButton />
 <script>
   if (!matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
+    document.documentElement.classList.add('js-reveal');
     const observer = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); } }), { threshold: .08 });
     document.querySelectorAll('[data-reveal]').forEach(el => observer.observe(el));
   } else document.querySelectorAll('[data-reveal]').forEach(el => el.classList.add('is-visible'));

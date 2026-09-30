@@ -2,17 +2,10 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageIntro from '../components/shared/PageIntro.astro';
 import EditorialLink from '../components/shared/EditorialLink.astro';
-const faqs = [
-  { q: '¿Necesito saber exactamente qué quiero trabajar antes de empezar?', a: 'No. Puedes llegar con una pregunta, una inquietud o simplemente con la sensación de que te gustaría comprender algo mejor. La conversación nos ayudará a explorar por dónde comenzar.' },
-  { q: '¿Cómo es una primera sesión?', a: 'Es un primer espacio para conocernos, conversar sobre lo que te trae a consulta y resolver dudas acerca de la forma de trabajo. Puedes compartir solo aquello con lo que te sientas cómodo o cómoda.' },
-  { q: '¿Cómo se realizan las sesiones?', a: 'Las sesiones son en línea, por videollamada. Puedes conectarte desde un espacio privado donde te sientas con comodidad para conversar.' },
-  { q: '¿Qué necesito para una sesión en línea?', a: 'Una conexión estable, un dispositivo para la videollamada y un lugar privado. Antes de comenzar podemos resolver cualquier duda sobre la modalidad.' },
-  { q: '¿Puedo tomar una sesión desde otra ciudad?', a: 'La modalidad en línea permite conversar desde el lugar donde te encuentres, siempre que cuentes con privacidad y conexión para la videollamada.' },
-  { q: '¿Cómo puedo solicitar una cita?', a: 'Puedes visitar la página Agendar para conocer el proceso y los canales de contacto disponibles.' },
-];
+import { sessionFaqs as faqs } from '../data/sessionFaqs';
 ---
 <BaseLayout title="Preguntas frecuentes" description="Respuestas sobre la primera sesión, la modalidad en línea y cómo iniciar psicoterapia con la Psic. Fernanda Hernández.">
   <PageIntro eyebrow="Dudas comunes" title="Preguntas frecuentes" description="Algunas respuestas para ayudarte a dar el primer paso con más claridad." image="/assets/03-ilustraciones-principales/ilustracion-psicologa-3.webp" imageAlt="Ilustración serena que acompaña la información sobre terapia" />
-  <section class="section section--sage"><div class="container faq-list">{faqs.map(({q,a}) => <details><summary>{q}</summary><p>{a}</p></details>)}</div></section>
+  <section class="section section--sage"><div class="container faq-list">{faqs.map(({id,q,a}) => <details id={id}><summary>{q}</summary><p>{a}</p></details>)}</div></section>
   <section class="section final-cta"><div class="container"><h2>¿Hay algo más que te gustaría <em>preguntar?</em></h2><EditorialLink href="/contacto/" label="Ir a contacto" accent /></div></section>
 </BaseLayout>

@@ -1,0 +1,16 @@
+---
+import { CalendarDays, Clock, MessageCircleHeart, ArrowUpRight } from '@lucide/astro';
+import { siteConfig } from '../../data/site';
+import { whatsappUrl } from '../../utils/whatsapp';
+const questions = [
+  { Icon: CalendarDays, title: 'Horarios disponibles', text: 'Días, disponibilidad y zona horaria.', message: 'Hola, Fernanda. Me gustaría conocer los horarios disponibles para una primera sesión en línea. Mi zona horaria es: ' },
+  { Icon: Clock, title: 'Duración y honorarios', text: 'Aclara los detalles antes de confirmar.', message: 'Hola, Fernanda. ¿Podrías compartirme la duración, los honorarios y las formas de pago de las sesiones en línea?' },
+  { Icon: MessageCircleHeart, title: 'Mi primera sesión', text: 'Pregunta cómo sería comenzar.', message: 'Hola, Fernanda. Estoy considerando iniciar terapia en línea y quisiera saber cómo es la primera sesión.' },
+];
+---
+<section class="section session-questions" id="antes-de-agendar" aria-labelledby="questions-title"><div class="container">
+  <p class="eyebrow">Antes de elegir tu horario</p><h2 id="questions-title">Tus preguntas también <em>tienen lugar</em></h2>
+  <p class="section-introduction">Elige lo que quieras consultar. Se abrirá un mensaje en WhatsApp que puedes editar antes de enviar.</p>
+  <div class="question-links">{questions.map(({ Icon, title, text, message }) => <a href={whatsappUrl(siteConfig.whatsapp.number, message)} target="_blank" rel="noopener noreferrer"><Icon size={26} stroke-width={1.5} aria-hidden="true" /><h3>{title}</h3><p>{text}</p><span class="question-action">Preguntar por WhatsApp <ArrowUpRight size={17} aria-hidden="true" /></span></a>)}</div>
+  {!siteConfig.whatsapp.number && <p class="booking-demo-note">Enlaces de muestra: todavía falta añadir el número de Fernanda.</p>}
+</div></section>

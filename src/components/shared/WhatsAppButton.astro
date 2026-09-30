@@ -7,11 +7,11 @@ const demo = !siteConfig.whatsapp.number;
 ---
 <a class="whatsapp-float" href={href} target="_blank" rel="noopener noreferrer" aria-label={demo ? 'Abrir WhatsApp con mensaje de ejemplo; elige un contacto' : 'Escribir a Fernanda por WhatsApp'} title={demo ? 'WhatsApp de ejemplo: elige un contacto' : 'Escribir por WhatsApp'}>
   <svg viewBox="0 0 24 24" width="23" height="23" fill="currentColor" aria-hidden="true"><path d={siWhatsapp.path} /></svg>
-  <span>WhatsApp</span>
+  <span>¿Hablamos?</span>
 </a>
 <style>
-  .whatsapp-float{position:fixed;z-index:40;right:22px;bottom:22px;display:inline-flex;align-items:center;gap:10px;padding:13px 17px;border-radius:999px;background:#294f45;color:#fff;font-size:.86rem;font-weight:600;box-shadow:0 8px 24px #29433f25;transition:background .2s,transform .2s}
+  .whatsapp-float{position:fixed;z-index:40;right:22px;bottom:max(22px,env(safe-area-inset-bottom));display:inline-flex;align-items:center;gap:10px;padding:13px 17px;border-radius:999px;background:#294f45;color:#fff;font-size:.86rem;font-weight:600;box-shadow:0 8px 24px #29433f25;transition:background .2s,transform .2s}
   .whatsapp-float:hover{background:#3d6d5f;transform:translateY(-2px)}
-  @media(max-width:640px){.whatsapp-float{right:16px;bottom:16px;padding:13px}.whatsapp-float span{display:none}}
+  @media(max-width:640px){.whatsapp-float{right:16px;bottom:max(16px,env(safe-area-inset-bottom));padding:13px}.whatsapp-float span{display:none}}
   @media(prefers-reduced-motion:reduce){.whatsapp-float{transition:none}}
 </style>

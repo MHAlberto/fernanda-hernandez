@@ -2,12 +2,26 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageIntro from '../components/shared/PageIntro.astro';
 import EditorialLink from '../components/shared/EditorialLink.astro';
-import { Video, LockKeyhole, MessageCircleHeart } from '@lucide/astro';
+import { Wifi, Headphones, Camera, BatteryCharging } from '@lucide/astro';
+import { sessionFaqs } from '../data/sessionFaqs';
+const preparation = [
+  { Icon: Headphones, title: 'Un espacio para ti', text: 'Busca privacidad y reduce las interrupciones. Ten audífonos a mano si te resultan cómodos.' },
+  { Icon: Wifi, title: 'Una conexión estable', text: 'Acércate a una buena señal y cierra las descargas que puedan interrumpir la llamada.' },
+  { Icon: Camera, title: 'Audio y cámara listos', text: 'Prueba el micrófono y la cámara. Coloca tu dispositivo en una superficie estable.' },
+  { Icon: BatteryCharging, title: 'Unos minutos de margen', text: 'Ten el enlace y el cargador a mano. Así puedes conectarte sin prisas.' },
+];
+const questions = sessionFaqs.filter(item => ['enlace', 'conexion', 'dispositivo'].includes(item.id));
 ---
-<BaseLayout title="Sesiones de psicoterapia en línea" description="Conoce cómo iniciar un proceso de psicoterapia en línea con la Psic. Fernanda Hernández, desde un espacio privado y a tu ritmo.">
-  <PageIntro eyebrow="Modalidad en línea" title="Un espacio de escucha, estés donde estés" description="Las sesiones se realizan por videollamada. Puedes conectarte desde un lugar privado donde te sientas con comodidad para conversar." image="/assets/03-ilustraciones-principales/ilustracion-psicologa-4.webp" imageAlt="Ilustración de Fernanda frente a una computadora portátil" />
-  <section class="section section--sage"><div class="container split"><div data-reveal="slide-right"><img src="/assets/03-ilustraciones-principales/ilustracion-laptop.webp" alt="Computadora portátil para realizar una sesión por videollamada" width="1256" height="1256" loading="lazy" /></div><div data-reveal="slide-left"><p class="eyebrow">Una forma de encontrarnos</p><h2>La cercanía también puede construirse <em>en línea</em></h2><p>La modalidad en línea ofrece un espacio para hablar, reflexionar y explorar lo que hoy te importa. Antes de comenzar, podemos resolver tus dudas y acordar cómo serán nuestros encuentros.</p><EditorialLink href="/agendar/" label="Agendar sesión" accent /></div></div></section>
-  <section class="section"><div class="container"><h2>Para comenzar con <em>calma</em></h2><div class="steps online-steps"><div><Video size={29} stroke-width={1.5} aria-hidden="true" /><h3>Videollamada</h3><p>Nos encontramos en un espacio virtual acordado previamente.</p></div><div><LockKeyhole size={29} stroke-width={1.5} aria-hidden="true" /><h3>Espacio privado</h3><p>Busca un lugar donde puedas hablar con tranquilidad y cuidar tu privacidad.</p></div><div><MessageCircleHeart size={29} stroke-width={1.5} aria-hidden="true" /><h3>A tu ritmo</h3><p>La primera sesión puede empezar con preguntas, dudas o simplemente con lo que hoy puedas poner en palabras.</p></div></div></div></section>
-  <section class="section section--rose"><div class="container split"><div><h2>El primer paso puede ser <em>un mensaje</em></h2><p>Si te gustaría saber más sobre la forma de trabajo, visita la página para agendar.</p><EditorialLink href="/agendar/" label="Conocer cómo agendar" accent /></div><img src="/assets/03-ilustraciones-principales/ilustracion-laptop.webp" alt="Ilustración de una computadora portátil para sesiones en línea" width="1256" height="1256" loading="lazy" /></div></section>
+<BaseLayout title="Sesiones de psicoterapia en línea" description="Cómo preparar tu espacio, conectarte por videollamada y acordar una primera sesión de psicoterapia en línea con Fernanda Hernández.">
+  <PageIntro eyebrow="Psicoterapia por videollamada" title="Tu sesión, desde un espacio propio" description="La sesión es un tiempo reservado para conversar contigo. Al agendar, acordamos el horario, la plataforma y los detalles para conectarnos." image="/assets/03-ilustraciones-principales/ilustracion-psicologa-4.webp" imageAlt="Ilustración de Fernanda frente a una computadora, preparada para una videollamada">
+    <div class="link-row"><EditorialLink href="/agendar/" label="Solicitar mi primera sesión" accent /><a class="editorial-link" href="#antes-de-conectarte"><span>Cómo prepararme</span><span aria-hidden="true">↓</span></a></div>
+  </PageIntro>
+  <section class="section section--sage session-preparation" id="antes-de-conectarte" aria-labelledby="preparation-title"><div class="container preparation-layout">
+    <div><p class="eyebrow">Antes de conectarte</p><h2 id="preparation-title">Prepara tu espacio, <em>con calma</em></h2><p>No necesitas un equipo especial. Estos pequeños detalles pueden hacer más cómodo el encuentro.</p><img class="preparation-art" src="/assets/03-ilustraciones-principales/ilustracion-laptop.webp" alt="Computadora con elementos para preparar una sesión en línea" width="1256" height="1256" loading="lazy" /></div>
+    <ul class="preparation-list">{preparation.map(({Icon,title,text}) => <li><Icon size={26} stroke-width={1.5} aria-hidden="true" /><div><h3>{title}</h3><p>{text}</p></div></li>)}</ul>
+  </div></section>
+  <section class="section online-practical"><div class="container"><p class="eyebrow">Los detalles prácticos</p><h2>Para llegar con <em>más claridad</em></h2>
+    <div class="faq-list">{questions.map(({id,q,a}) => <details id={id}><summary>{q}</summary><p>{a}</p></details>)}</div>
+    <div class="link-row"><EditorialLink href="/preguntas-frecuentes/" label="Ver todas las preguntas" /><EditorialLink href="/agendar/" label="Consultar disponibilidad" accent /></div>
+  </div></section>
 </BaseLayout>
-<style>.online-steps{margin-top:55px}.online-steps svg{color:#698f84;margin-bottom:23px}</style>

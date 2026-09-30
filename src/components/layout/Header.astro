@@ -1,5 +1,6 @@
 ---
 import Logo from '../brand/Logo.astro';
+import { ArrowUpRight } from '@lucide/astro';
 import { navigation } from '../../data/navigation';
 const current = Astro.url.pathname;
 ---
@@ -7,12 +8,14 @@ const current = Astro.url.pathname;
   <Logo />
   <nav class="desktop-nav" aria-label="Navegación principal">{navigation.map(item => <a href={item.href} aria-current={current === item.href ? 'page' : undefined}>{item.label}</a>)}</nav>
   <button class="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-nav"><span></span><span></span></button>
-</div><nav id="mobile-nav" class="mobile-nav" aria-label="Navegación móvil" hidden>{navigation.map(item => <a href={item.href} aria-current={current === item.href ? 'page' : undefined}>{item.label}</a>)}</nav></header>
+</div><nav id="mobile-nav" class="mobile-nav" aria-label="Navegación móvil" hidden>{navigation.map(item => <a href={item.href} aria-current={current === item.href ? 'page' : undefined}>{item.label}</a>)}<a class="mobile-booking" href="/agendar/">Solicitar una cita en línea <ArrowUpRight size={19} aria-hidden="true" /></a><div class="mobile-nav-extra"><a href="/en-linea/">Cómo son las sesiones</a><a href="/blog/">Lecturas del blog</a></div></nav></header>
 <script>
   const toggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
   const nav = document.querySelector<HTMLElement>('#mobile-nav');
   function closeMenu() { if (!toggle || !nav) return; toggle.setAttribute('aria-expanded', 'false'); toggle.setAttribute('aria-label', 'Abrir menú'); nav.hidden = true; }
   toggle?.addEventListener('click', () => { if (!nav) return; const open = toggle.getAttribute('aria-expanded') !== 'true'; toggle.setAttribute('aria-expanded', String(open)); toggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú'); nav.hidden = !open; if (open) nav.querySelector('a')?.focus(); });
   document.addEventListener('keydown', event => { if (event.key === 'Escape' && toggle?.getAttribute('aria-expanded') === 'true') { closeMenu(); toggle.focus(); } });
+  matchMedia('(min-width: 781px)').addEventListener('change', event => { if (event.matches) closeMenu(); });
+  document.addEventListener('click', event => { if (!(event.target as Element).closest('.site-header')) closeMenu(); });
   nav?.addEventListener('click', event => { if ((event.target as Element).closest('a')) closeMenu(); });
 </script>

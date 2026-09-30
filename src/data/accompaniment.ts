@@ -1,16 +1,16 @@
 export const accompaniment = [
   {
-    id: 'ansiedad-y-estres', title: 'Ansiedad y estrés', icon: 'waves',
+    id: 'ansiedad-estres', title: 'Ansiedad y estrés', icon: 'waves',
     summary: 'Cuando la preocupación o la tensión ocupan demasiado espacio en tu día.',
     detail: 'Podemos explorar qué situaciones activan esa sensación, cómo la vives en el cuerpo y qué relación tiene con tus responsabilidades, expectativas o experiencias. El propósito es comprender lo que ocurre y encontrar formas de acompañarte en esos momentos.',
   },
   {
-    id: 'autoestima-y-autoconocimiento', title: 'Autoestima y autoconocimiento', icon: 'sparkles',
+    id: 'autoestima-autoconocimiento', title: 'Autoestima y autoconocimiento', icon: 'sparkles',
     summary: 'Para mirar con más curiosidad la forma en que te hablas y te percibes.',
     detail: 'A veces nos acompañan ideas muy exigentes sobre quiénes deberíamos ser. En terapia podemos detenernos en esas voces, reconocer de dónde vienen y abrir espacio para una relación contigo más consciente y amable.',
   },
   {
-    id: 'relaciones-y-vinculos', title: 'Relaciones y vínculos', icon: 'users',
+    id: 'relaciones-vinculos', title: 'Relaciones y vínculos', icon: 'users',
     summary: 'Para comprender lo que aparece en tus relaciones cercanas.',
     detail: 'Los vínculos pueden traer cercanía, dudas, conflictos o patrones que se repiten. Conversar sobre ellos permite explorar tus necesidades, límites, maneras de comunicarte y expectativas dentro de cada relación.',
   },

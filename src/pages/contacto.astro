@@ -9,10 +9,12 @@ const whatsapp = whatsappUrl(siteConfig.whatsapp.number, siteConfig.whatsapp.mes
 ---
 <BaseLayout title="Contacto y citas en línea" description="Escribe a la Psic. Fernanda Hernández para pedir informes sobre psicoterapia en línea, resolver dudas o solicitar una primera sesión.">
   <section class="page-hero contact-hero"><div class="container contact-hero-grid"><div>
-    <p class="eyebrow">Contacto · Sesiones en línea</p><h1>Cuando quieras, podemos empezar por <em>un mensaje</em></h1>
+    <p class="eyebrow">Contacto · Sesiones en línea</p><h1>Podemos empezar por <em>un mensaje</em></h1>
     <p>Si estás pensando en iniciar terapia, puedes escribirme para pedir informes, contarme brevemente qué te gustaría explorar o resolver tus dudas antes de agendar.</p>
     <div class="contact-primary-actions"><a class="booking-whatsapp" href={whatsapp} target="_blank" rel="noopener noreferrer"><MessageCircleHeart size={21} aria-hidden="true" /> Escribir por WhatsApp <ArrowUpRight size={18} aria-hidden="true" /></a><a class="editorial-link" href="/agendar/"><span>Agendar una primera sesión</span><ArrowUpRight size={18} aria-hidden="true" /></a></div>
-    {!siteConfig.whatsapp.number && <p class="booking-demo-note">WhatsApp abrirá un mensaje listo para enviar; el número de contacto se actualizará con los datos definitivos.</p>}
+    {!siteConfig.whatsapp.number && <p class="booking-demo-note">Enlace de muestra: todavía falta añadir el número de Fernanda.</p>}
+    <p class="contact-reassurance">Para pedir informes, basta con un saludo. Puedes reservar los detalles personales para la sesión.</p>
+    <div class="contact-useful-links"><a href="/agendar/#antes-de-agendar">Consultar duración y honorarios <span aria-hidden="true">↗</span></a><a href="/en-linea/#antes-de-conectarte">Preparar mi videollamada <span aria-hidden="true">↗</span></a></div>
   </div><figure class="organic-art contact-art"><span class="organic-blob organic-blob--sage" aria-hidden="true"></span><img src="/assets/03-ilustraciones-principales/ilustracion-psicologa-4.webp" alt="Ilustración de Fernanda durante una sesión de psicoterapia en línea" width="1256" height="1256" loading="eager" /></figure></div></section>
   <section class="section section--sage contact-details"><div class="container contact-details-grid">
     <div><p class="eyebrow"><Video size={19} aria-hidden="true" /> Modalidad</p><h2>Atención exclusivamente <em>en línea</em></h2><p>Las sesiones son por videollamada. Puedes conectarte desde un lugar privado donde te sientas con comodidad.</p><EditorialLink href="/en-linea/" label="Cómo funcionan las sesiones" accent /></div>
