@@ -3,6 +3,7 @@ import SEO from '../components/seo/SEO.astro';
 import Header from '../components/layout/Header.astro';
 import Footer from '../components/layout/Footer.astro';
 import WhatsAppButton from '../components/shared/WhatsAppButton.astro';
+import { gaMeasurementId } from '../data/analytics';
 import '../styles/global.css';
 import '../styles/organic.css';
 import '../styles/redesign.css';
@@ -14,6 +15,11 @@ const { title, description, image, noindex, type, publishedTime, modifiedTime, j
 ---
 <!doctype html>
 <html lang="es-MX"><head>
+  {import.meta.env.PROD && gaMeasurementId && <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}></script>}
+  {import.meta.env.PROD && gaMeasurementId && <script is:inline set:html={`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${gaMeasurementId}');`}></script>}
   <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="theme-color" content="#F8F4EF" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" /><SEO {...{ title, description, image, noindex, type, publishedTime, modifiedTime }} />
   {googleVerification && <meta name="google-site-verification" content={googleVerification} />}{jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}

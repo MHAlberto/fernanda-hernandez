@@ -1,8 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageIntro from '../components/shared/PageIntro.astro';
+import { gaMeasurementId } from '../data/analytics';
 
-const analyticsEnabled = import.meta.env.PROD && Boolean(import.meta.env.PUBLIC_CF_WEB_ANALYTICS_TOKEN?.trim());
+const cloudflareAnalyticsEnabled = import.meta.env.PROD;
+const googleAnalyticsEnabled = import.meta.env.PROD && Boolean(gaMeasurementId);
 const privacyEmail = import.meta.env.PUBLIC_PRIVACY_EMAIL?.trim();
 const privacyAddress = import.meta.env.PUBLIC_PRIVACY_CONTACT_ADDRESS?.trim();
 const noticeReady = Boolean(privacyEmail && privacyAddress);
@@ -11,7 +13,7 @@ const pendingDetails = [...(!privacyAddress ? ['el domicilio para notificaciones
 <BaseLayout title="Aviso de privacidad" description="Aviso de privacidad del sitio y de los canales digitales de la Psic. Fernanda Hernández." noindex>
   <PageIntro eyebrow="Información y derechos" title="Aviso de privacidad" description="Cómo se trata la información al visitar este sitio y al solicitar información sobre psicoterapia en línea." />
   <section class="section section--sage"><div class="container narrow prose privacy-notice">
-    <p class="eyebrow">Última revisión · 30 de septiembre de 2026</p>
+    <p class="eyebrow">Última revisión · 1 de octubre de 2026</p>
     {!noticeReady && <p class="privacy-notice-status" role="note">La versión integral aún requiere confirmar {pendingDetails.join(' y ')}. Estos datos se incorporarán antes de publicar el aviso como definitivo.</p>}
 
     <h2>Quién es responsable</h2>
@@ -33,8 +35,9 @@ const pendingDetails = [...(!privacyAddress ? ['el domicilio para notificaciones
     <p>Este sitio no ofrece suscripciones, publicidad personalizada ni venta de datos.</p>
 
     <h2>Analítica de navegación</h2>
-    {analyticsEnabled ? <p>Este sitio usa Cloudflare Web Analytics para revisar datos agregados de visitas, páginas consultadas, procedencia general, navegador y rendimiento. Cloudflare informa que su herramienta no utiliza cookies ni conserva direcciones IP individuales para estas métricas. <a href="https://developers.cloudflare.com/web-analytics/about/">Consulta la documentación de Cloudflare Web Analytics</a>.</p> : <p>Cloudflare Web Analytics no está activado en este despliegue. Si se configura, este aviso se actualizará para describir la medición agregada que utiliza.</p>}
-    <p>La analítica de Cloudflare muestra tendencias del sitio y rendimiento técnico; no identifica a una persona ni registra clics de agenda como conversiones.</p>
+    {cloudflareAnalyticsEnabled ? <p>Este sitio usa Cloudflare Web Analytics para revisar datos agregados de visitas, páginas consultadas, procedencia general, navegador y rendimiento. Cloudflare informa que su herramienta no utiliza cookies ni conserva direcciones IP individuales para estas métricas. <a href="https://developers.cloudflare.com/web-analytics/about/">Consulta la documentación de Cloudflare Web Analytics</a>.</p> : <p>Cloudflare Web Analytics está preparado, pero no se ha confirmado su activación en este despliegue.</p>}
+    {googleAnalyticsEnabled && <p>Este sitio también usa Google Analytics 4 para medir visitas y páginas consultadas. Google puede utilizar cookies y otros identificadores conforme a sus <a href="https://policies.google.com/privacy?hl=es">políticas de privacidad</a>. No se envían a Analytics mensajes de WhatsApp ni información clínica mediante este sitio.</p>}
+    <p>Las visitas muestran tendencias de uso del sitio; no equivalen a citas confirmadas ni a pacientes.</p>
 
     <h2>Canales externos</h2>
     <p>WhatsApp, redes sociales y la plataforma de videollamada son servicios externos. Si decides utilizarlos, revisa sus avisos de privacidad y comparte solo la información necesaria para iniciar la conversación. Cada proveedor puede tratar datos según sus propias políticas.</p>

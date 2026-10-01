@@ -21,26 +21,26 @@ npm install
 npx wrangler login
 ```
 
-Define el nombre del proyecto en `wrangler.jsonc` si quieres cambiar `fernanda-hernandez`. Configura `PUBLIC_SITE_URL` en un archivo `.env` con la URL pública completa que usarás (`https://...workers.dev` o tu dominio propio). Después publica:
+El Worker `fernanda-hernandez` está configurado para usar `nube-serena.com` como dominio personalizado. La zona DNS debe estar activa en la misma cuenta de Cloudflare que el Worker. Configura `PUBLIC_SITE_URL=https://nube-serena.com` en `.env` o en el entorno de compilación. Después publica:
 
 ```powershell
 npm run check
 npm run deploy
 ```
 
-Wrangler mostrará la URL al terminar. Si todavía no conocías la URL al hacer el primer despliegue, escríbela en `PUBLIC_SITE_URL` y ejecuta `npm run deploy` otra vez para actualizar los enlaces canónicos, Open Graph, sitemap y `robots.txt`. Para un dominio propio, cambia `PUBLIC_SITE_URL` al dominio definitivo y vuelve a desplegar. El 404 está configurado en `wrangler.jsonc`.
+Wrangler mostrará la URL al terminar. Comprueba que `https://nube-serena.com/`, `https://nube-serena.com/google234a2aafb28843a5.html` y `https://nube-serena.com/sitemap-index.xml` respondan públicamente. El 404 está configurado en `wrangler.jsonc`.
 
 ## Configuración antes de publicar
 
 1. Copia `.env.example` a `.env`.
-2. Define `PUBLIC_SITE_URL` con el dominio canónico real, incluido `https://`. Astro lo usa para los canonical y el sitemap. El valor predeterminado `https://example.com` es solo de desarrollo.
-3. Define `PUBLIC_WHATSAPP_NUMBER` con el número internacional completo. Mientras esté vacío, el botón usa el enlace genérico de WhatsApp y muestra una selección de contactos; **no abre un chat con Fernanda**.
-4. Añade `PUBLIC_INSTAGRAM_URL` y `PUBLIC_FACEBOOK_URL` cuando existan. Mientras estén vacíos, los iconos llevan a las páginas generales de las plataformas y se identifican como enlaces de muestra.
+2. Mantén `PUBLIC_SITE_URL=https://nube-serena.com`. Astro lo usa para los enlaces canónicos, Open Graph, el sitemap y `robots.txt`.
+3. Confirma que el número de WhatsApp y el perfil de Instagram incluidos como valores predeterminados en `src/data/site.ts` pertenecen a Fernanda. Si cambian, define `PUBLIC_WHATSAPP_NUMBER` y `PUBLIC_INSTAGRAM_URL` con los valores correctos.
+4. Añade `PUBLIC_FACEBOOK_URL` solo cuando haya un perfil confirmado. Mientras esté vacío, el enlace de Facebook no aparece.
 5. `robots.txt` se genera automáticamente con el mismo dominio canónico.
 6. Revisa `src/data/site.ts` para añadir credenciales solamente cuando estén confirmadas. La biografía está en `src/pages/sobre-mi.astro` y su resumen en `src/pages/index.astro`.
-7. Sustituye el contenido base de `src/pages/aviso-de-privacidad.astro` por el aviso legal definitivo antes de empezar a recibir consultas.
+7. Confirma un correo y un domicilio para notificaciones de privacidad (`PUBLIC_PRIVACY_EMAIL` y `PUBLIC_PRIVACY_CONTACT_ADDRESS`) y revisa el aviso integral con Fernanda antes de tratar datos clínicos.
 
-El sitio no incluye teléfono real, perfiles sociales propios, cédula, tarifas ni horarios porque esos datos no se proporcionaron. No se ofrece atención presencial ni se muestra una ubicación.
+El sitio aún no publica cédula, formación verificable, tarifas ni horarios porque esos datos no se proporcionaron. No se ofrece atención presencial ni se muestra una ubicación.
 
 ## Contenido y diseño
 
@@ -54,20 +54,20 @@ El sitio no incluye teléfono real, perfiles sociales propios, cédula, tarifas 
 
 ### Cloudflare Web Analytics
 
-Cloudflare ofrece un tablero de visitas y rendimiento. Para activarlo en este Worker:
+Cloudflare ofrece un tablero de visitas y rendimiento. En este Worker:
 
-1. En el panel de Cloudflare, abre **Web Analytics** y elige **Add a site**.
-2. Agrega el hostname actual: `fernanda-hernandez.mayiitoo-alberto.workers.dev`.
-3. En **Manage site**, copia el token del snippet.
-4. Guárdalo en `.env` como `PUBLIC_CF_WEB_ANALYTICS_TOKEN=tu_token` y ejecuta `npm run deploy`.
-5. Después abre Web Analytics en Cloudflare. El panel muestra visitas, páginas, referentes, navegador/dispositivo y Core Web Vitals.
+1. Abre **Web Analytics** en el panel de Cloudflare.
+2. El hostname `nube-serena.com` ya está vinculado al Worker y el HTML público muestra el beacon inyectado automáticamente por Cloudflare.
+3. Consulta Web Analytics en Cloudflare. El panel muestra visitas, páginas, referentes, navegador/dispositivo y Core Web Vitals. No configures `PUBLIC_CF_WEB_ANALYTICS_TOKEN` mientras la inyección automática siga activa para evitar dos beacons.
 
-El snippet solo se incorpora a builds de producción cuando hay token; no mide las visitas de `localhost`. Cloudflare Web Analytics no incluye seguimiento de eventos personalizados, así que no cuenta por sí solo los clics de WhatsApp. La documentación de Cloudflare indica que el beacon no usa cookies ni almacenamiento local para estas métricas: <https://developers.cloudflare.com/web-analytics/about/>.
+El snippet manual solo se incorpora a builds de producción cuando hay token; la inyección automática del dominio funciona por separado y no mide las visitas de `localhost`. Cloudflare Web Analytics no incluye seguimiento de eventos personalizados, así que no cuenta por sí solo los clics de WhatsApp. La documentación de Cloudflare indica que el beacon no usa cookies ni almacenamiento local para estas métricas: <https://developers.cloudflare.com/web-analytics/about/>.
 
 ### Google Search Console
 
-Search Console permite revisar consultas, impresiones, clics e indexación en Google. Con el hostname `workers.dev`, crea en Search Console una propiedad de prefijo de URL con la dirección completa del sitio y elige la verificación por etiqueta HTML. Copia el valor de `content` a `.env` como `PUBLIC_GOOGLE_SITE_VERIFICATION=tu_codigo`, ejecuta `npm run deploy` y luego pulsa **Verificar** en Search Console. Envía también `https://fernanda-hernandez.mayiitoo-alberto.workers.dev/sitemap-index.xml`.
+Search Console permite revisar consultas, impresiones, clics e indexación en Google. Para la propiedad de prefijo `https://nube-serena.com/`, el archivo entregado por Fernanda está en `public/google234a2aafb28843a5.html`. Después de desplegar, comprueba que la URL del archivo responda exactamente y pulsa **Verificar** en Search Console con la cuenta que descargó el archivo. Conserva el archivo publicado. Envía también `https://nube-serena.com/sitemap-index.xml`. Para una propiedad de dominio completa, Google exige verificación DNS.
 
-La etiqueta solo se agrega a producción si ese valor existe. Una propiedad de dominio requiere acceso a DNS; cuando tengas un dominio propio, podrás verificar el dominio completo desde Cloudflare DNS.
+La etiqueta HTML opcional solo se agrega a producción si `PUBLIC_GOOGLE_SITE_VERIFICATION` tiene un valor. Una propiedad de dominio completa requiere verificación DNS en la zona de Cloudflare.
 
-Las dos variables ya están listadas sin valores en `.env.example`. No compartas contraseñas ni tokens de acceso a Cloudflare; el token del beacon y la etiqueta de verificación son los valores que se insertan en el HTML público.
+Google Analytics 4 es distinto de Search Console. El flujo web entregado para `https://nube-serena.com/` tiene el ID `G-7EKF16D1R7`; `gtag.js` se incorpora al inicio del `<head>` de todas las páginas de producción. El archivo de Search Console no incluye este ID. Si cambia la propiedad, actualiza `PUBLIC_GA_MEASUREMENT_ID`.
+
+No compartas contraseñas ni tokens de acceso a Cloudflare. El token del beacon y el ID de GA4 son identificadores públicos que aparecen en el HTML del sitio.

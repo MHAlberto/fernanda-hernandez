@@ -8,8 +8,7 @@ const links = [
   { label: 'WhatsApp', href: whatsappUrl(siteConfig.whatsapp.number, siteConfig.whatsapp.message), icon: siWhatsapp },
   { label: 'Instagram', href: siteConfig.social.instagram, icon: siInstagram },
   { label: 'Facebook', href: siteConfig.social.facebook, icon: siFacebook },
-].filter(link => !onlySocial || link.label !== 'WhatsApp');
-const demo = !siteConfig.whatsapp.number || siteConfig.social.instagram === 'https://www.instagram.com/' || siteConfig.social.facebook === 'https://www.facebook.com/';
+].filter(link => link.href && (!onlySocial || link.label !== 'WhatsApp'));
 ---
-<nav class="social-links" aria-label="Redes sociales y contacto">{links.map(link => <a href={link.href} target="_blank" rel="noopener noreferrer" aria-label={link.label}><svg role="img" aria-hidden="true" viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d={link.icon.path} /></svg><span>{link.label}</span></a>)}{demo && <small>Enlaces de muestra hasta añadir los datos reales.</small>}</nav>
-<style>.social-links{display:flex;flex-direction:column;gap:9px}.social-links a{display:inline-flex;align-items:center;gap:10px;transition:color .2s}.social-links a:hover{color:#698f84}.social-links small{max-width:220px;color:#667370;font-size:.72rem;line-height:1.5;margin-top:8px}</style>
+<nav class="social-links" aria-label="Redes sociales y contacto">{links.map(link => <a href={link.href} target="_blank" rel="noopener noreferrer" aria-label={link.label}><svg role="img" aria-hidden="true" viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d={link.icon.path} /></svg><span>{link.label}</span></a>)}</nav>
+<style>.social-links{display:flex;flex-direction:column;gap:9px}.social-links a{display:inline-flex;align-items:center;gap:10px;transition:color .2s}.social-links a:hover{color:#698f84}</style>

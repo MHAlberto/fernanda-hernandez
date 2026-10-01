@@ -9,7 +9,7 @@ export const siteConfig = {
   },
   social: {
     instagram: import.meta.env.PUBLIC_INSTAGRAM_URL || 'https://www.instagram.com/psic.fer.hernandez_/',
-    facebook: import.meta.env.PUBLIC_FACEBOOK_URL || 'https://www.facebook.com/',
+    facebook: import.meta.env.PUBLIC_FACEBOOK_URL || '',
   },
   credentials: { university: '', license: '', postgraduate: '' },
 } as const;
