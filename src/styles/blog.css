@@ -45,3 +45,4 @@
 @media(max-width:900px){.article-toc{max-height:none;overflow:visible}}
 
 .article-prose h2,.article-prose h3{text-align:left;hyphens:none;word-break:normal;overflow-wrap:normal}
+.article-toc a span,.article-toc a[aria-current=location] span{color:var(--sage-dark)}

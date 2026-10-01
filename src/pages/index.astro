@@ -13,8 +13,9 @@ const allPosts = await getCollection('blog', ({ data }) => !data.draft);
 const posts = allPosts.filter(post => articleOrder.includes(post.id)).sort((a, b) => articleOrder.indexOf(a.id) - articleOrder.indexOf(b.id));
 const whatsappReasons = whatsappUrl(siteConfig.whatsapp.number, 'Hola, Fernanda. Me gustaría contarte brevemente qué estoy buscando y preguntar cómo iniciar un proceso de acompañamiento.');
 const structuredData = { '@context': 'https://schema.org', '@graph': [
-  { '@type': 'Person', '@id': new URL('/#fernanda', Astro.site).toString(), name: siteConfig.name, description: siteConfig.description, jobTitle: 'Psicóloga clínica' },
-  { '@type': 'ProfessionalService', name: siteConfig.name, description: siteConfig.description, provider: { '@id': new URL('/#fernanda', Astro.site).toString() }, url: new URL('/', Astro.site).toString(), areaServed: { '@type': 'Country', name: siteConfig.serviceArea } },
+  { '@type': 'Person', '@id': new URL('/#fernanda', Astro.site).toString(), name: siteConfig.shortName, description: siteConfig.description, jobTitle: 'Psicóloga clínica', url: new URL('/sobre-mi/', Astro.site).toString(), sameAs: [siteConfig.social.instagram].filter(Boolean) },
+  { '@type': 'ProfessionalService', '@id': new URL('/#servicio', Astro.site).toString(), name: siteConfig.name, description: siteConfig.description, provider: { '@id': new URL('/#fernanda', Astro.site).toString() }, url: new URL('/', Astro.site).toString(), areaServed: { '@type': 'Country', name: siteConfig.serviceArea } },
+  { '@type': 'WebSite', '@id': new URL('/#sitio', Astro.site).toString(), name: siteConfig.name, url: new URL('/', Astro.site).toString(), inLanguage: 'es-MX', publisher: { '@id': new URL('/#servicio', Astro.site).toString() } },
 ] };
 ---
 <BaseLayout title="Psicoterapia en línea con Fernanda Hernández" description={siteConfig.description} jsonLd={structuredData}>
@@ -62,7 +63,7 @@ const structuredData = { '@context': 'https://schema.org', '@graph': [
     <p class="eyebrow">Cómo empezar</p><h2 id="proceso-home">Tres pasos, <em>a tu ritmo</em></h2>
     <div class="steps process-steps">
       <a class="process-step" href="/contacto/"><span class="process-step-art"><img src="/assets/03-ilustraciones-principales/ilustracion-laptop.webp" alt="" aria-hidden="true" width="1256" height="1256" loading="lazy" /></span><MessageCircleHeart size={23} aria-hidden="true" /><span class="step-number">01</span><h3>Escríbeme</h3><p>Un mensaje breve es suficiente para pedir informes o resolver una duda.</p><span class="editorial-inline">Contactar ↗</span></a>
-      <a class="process-step" href={whatsappReasons} target="_blank" rel="noopener noreferrer"><span class="process-step-art"><img src="/assets/03-ilustraciones-principales/ilustracion-psicologa-3.webp" alt="" aria-hidden="true" width="1256" height="1256" loading="lazy" /></span><MessagesSquare size={23} aria-hidden="true" /><span class="step-number">02</span><h3>Cuéntame brevemente qué buscas</h3><p>Podemos hablar de lo que te gustaría explorar y aclarar cómo trabajo.</p><span class="editorial-inline">Enviar un primer mensaje ↗</span></a>
+      <a class="process-step" href={whatsappReasons} target="_blank" rel="noopener noreferrer"><span class="process-step-art"><img src="/assets/03-ilustraciones-principales/ilustracion-psicologa-3.webp" alt="" aria-hidden="true" width="1256" height="1256" loading="lazy" /></span><MessagesSquare size={23} aria-hidden="true" /><span class="step-number">02</span><h3>Cuéntame brevemente qué buscas</h3><p>Podemos hablar de lo que te gustaría explorar y aclarar cómo trabajo.</p><span class="editorial-inline">Enviar un primer mensaje ↗</span><span class="sr-only">(abre en una pestaña nueva)</span></a>
       <a class="process-step" href="/agendar/"><span class="process-step-art"><img src="/assets/03-ilustraciones-principales/ilustracion-psicologa-4.webp" alt="" aria-hidden="true" width="1256" height="1256" loading="lazy" /></span><CalendarDays size={23} aria-hidden="true" /><span class="step-number">03</span><h3>Agendamos</h3><p>Acordamos fecha y horario para una sesión por videollamada.</p><span class="editorial-inline">Cómo agendar ↗</span></a>
     </div>
   </div></section>
@@ -82,7 +83,7 @@ const structuredData = { '@context': 'https://schema.org', '@graph': [
   <section class="section home-journal" aria-labelledby="articulos-home"><div class="container">
     <div class="home-journal-heading"><div><p class="eyebrow">Lecturas para acompañarte</p><h2 id="articulos-home">Del blog, <em>con calma</em></h2></div><EditorialLink href="/blog/" label="Ver todos los artículos" /></div>
     <div class="home-journal-grid">{posts.map((post, index) => <article class="home-journal-card"><a class="home-journal-image organic-art" href={'/blog/' + post.id + '/'} aria-label={'Leer ' + post.data.title}><span class:list={['organic-blob', index === 1 ? 'organic-blob--rose' : '']} aria-hidden="true"></span>{post.data.image && <img src={post.data.image} alt={post.data.imageAlt || 'Ilustración para el artículo ' + post.data.title} width={post.data.imageWidth ?? 1256} height={post.data.imageHeight ?? 1256} loading="lazy" />}</a>
-      <div><p class="eyebrow">{post.data.tags[0]}</p><h3><a href={'/blog/' + post.id + '/'}>{post.data.title}</a></h3><p>{post.data.description}</p><EditorialLink href={'/blog/' + post.id + '/'} label="Leer artículo" /></div>
+      <div><p class="eyebrow">{post.data.tags[0]}</p><h3><a href={'/blog/' + post.id + '/'}>{post.data.title}</a></h3><p>{post.data.description}</p><EditorialLink href={'/blog/' + post.id + '/'} label="Leer artículo" ariaLabel={'Leer artículo: ' + post.data.title} /></div>
     </article>)}</div>
   </div></section>
 </BaseLayout>

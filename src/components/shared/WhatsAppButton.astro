@@ -5,7 +5,7 @@ import { whatsappUrl } from '../../utils/whatsapp';
 const href = whatsappUrl(siteConfig.whatsapp.number, siteConfig.whatsapp.message);
 const demo = !siteConfig.whatsapp.number;
 ---
-<a class="whatsapp-float" href={href} target="_blank" rel="noopener noreferrer" aria-label={demo ? 'Abrir WhatsApp con mensaje de ejemplo; elige un contacto' : 'Escribir a Fernanda por WhatsApp'} title={demo ? 'WhatsApp de ejemplo: elige un contacto' : 'Escribir por WhatsApp'}>
+<a class="whatsapp-float" href={href} target="_blank" rel="noopener noreferrer" aria-label={demo ? 'Abrir WhatsApp con mensaje de ejemplo; elige un contacto; abre en una pestaña nueva' : 'Escribir a Fernanda por WhatsApp; abre en una pestaña nueva'} title={demo ? 'WhatsApp de ejemplo: elige un contacto' : 'Escribir por WhatsApp'}>
   <svg viewBox="0 0 24 24" width="23" height="23" fill="currentColor" aria-hidden="true"><path d={siWhatsapp.path} /></svg>
   <span>¿Hablamos?</span>
 </a>

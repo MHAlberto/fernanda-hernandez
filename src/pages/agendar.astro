@@ -11,7 +11,7 @@ const whatsapp = whatsappUrl(siteConfig.whatsapp.number, siteConfig.whatsapp.mes
   <section class="page-hero booking-hero"><div class="container booking-hero-grid"><div class="booking-hero-copy">
     <p class="eyebrow">Agendar sesión · Psicoterapia en línea</p><h1>Tu primera sesión, <em>en línea</em></h1>
     <p>Cuéntame brevemente qué te gustaría explorar o pregunta lo que necesites saber antes de agendar. No hace falta que compartas información íntima para solicitar informes.</p>
-    <div class="link-row"><a class="booking-whatsapp" href={whatsapp} target="_blank" rel="noopener noreferrer"><MessageCircleHeart size={20} aria-hidden="true" /> Escribir por WhatsApp <ArrowUpRight size={17} aria-hidden="true" /></a><a class="editorial-link" href="#antes-de-agendar"><span>Duración, honorarios y horarios</span><ArrowUpRight size={18} aria-hidden="true" /></a></div>
+    <div class="link-row"><a class="booking-whatsapp" href={whatsapp} target="_blank" rel="noopener noreferrer"><MessageCircleHeart size={20} aria-hidden="true" /> Escribir por WhatsApp <ArrowUpRight size={17} aria-hidden="true" /><span class="sr-only">(abre en una pestaña nueva)</span></a><a class="editorial-link" href="#antes-de-agendar"><span>Duración, honorarios y horarios</span><ArrowUpRight size={18} aria-hidden="true" /></a></div>
     {!siteConfig.whatsapp.number && <p class="booking-demo-note">Enlace de muestra: todavía falta añadir el número de Fernanda.</p>}
     <p class="booking-reassurance"><Video size={17} aria-hidden="true" /> Por videollamada · Fecha y horario acordados contigo.</p>
   </div><figure class="booking-hero-art organic-art"><span class="organic-blob" aria-hidden="true"></span><img src="/assets/03-ilustraciones-principales/ilustracion-laptop.webp" alt="Una computadora para realizar sesiones terapéuticas por videollamada" width="1256" height="1256" loading="eager" /></figure></div></section>
@@ -19,7 +19,7 @@ const whatsapp = whatsappUrl(siteConfig.whatsapp.number, siteConfig.whatsapp.mes
     <div class="steps">
       <a class="booking-step" href="/contacto/"><MessageCircleHeart size={25} stroke-width={1.5} aria-hidden="true" /><span class="step-number">01</span><h3>Escríbeme</h3><p>Usa WhatsApp o revisa los demás canales de contacto.</p><span class="editorial-inline">Ir a contacto ↗</span></a>
       <a class="booking-step" href="/blog/empezar-terapia-sin-tener-todas-las-respuestas/"><Video size={25} stroke-width={1.5} aria-hidden="true" /><span class="step-number">02</span><h3>Cuéntame brevemente qué buscas</h3><p>Podemos aclarar tus dudas sobre la modalidad y lo que te gustaría explorar.</p><span class="editorial-inline">Qué esperar de la primera sesión ↗</span></a>
-      <a class="booking-step" href={whatsapp} target="_blank" rel="noopener noreferrer"><CalendarDays size={25} stroke-width={1.5} aria-hidden="true" /><span class="step-number">03</span><h3>Agendamos</h3><p>Tu cita queda agendada cuando confirmemos fecha, horario y los detalles de la videollamada.</p><span class="editorial-inline">Escribir para coordinar ↗</span></a>
+      <a class="booking-step" href={whatsapp} target="_blank" rel="noopener noreferrer"><CalendarDays size={25} stroke-width={1.5} aria-hidden="true" /><span class="step-number">03</span><h3>Agendamos</h3><p>Tu cita queda agendada cuando confirmemos fecha, horario y los detalles de la videollamada.</p><span class="editorial-inline">Escribir para coordinar ↗</span><span class="sr-only">(abre en una pestaña nueva)</span></a>
     </div>
   </div></section>
   <SessionQuestions />

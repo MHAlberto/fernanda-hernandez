@@ -11,6 +11,6 @@ const questions = [
 <section class="section session-questions" id="antes-de-agendar" aria-labelledby="questions-title"><div class="container">
   <p class="eyebrow">Antes de elegir tu horario</p><h2 id="questions-title">Tus preguntas también <em>tienen lugar</em></h2>
   <p class="section-introduction">Elige lo que quieras consultar. Se abrirá un mensaje en WhatsApp que puedes editar antes de enviar.</p>
-  <div class="question-links">{questions.map(({ Icon, title, text, message }) => <a href={whatsappUrl(siteConfig.whatsapp.number, message)} target="_blank" rel="noopener noreferrer"><Icon size={26} stroke-width={1.5} aria-hidden="true" /><h3>{title}</h3><p>{text}</p><span class="question-action">Preguntar por WhatsApp <ArrowUpRight size={17} aria-hidden="true" /></span></a>)}</div>
+  <div class="question-links">{questions.map(({ Icon, title, text, message }) => <a href={whatsappUrl(siteConfig.whatsapp.number, message)} target="_blank" rel="noopener noreferrer"><Icon size={26} stroke-width={1.5} aria-hidden="true" /><h3>{title}</h3><p>{text}</p><span class="question-action">Preguntar por WhatsApp <ArrowUpRight size={17} aria-hidden="true" /></span><span class="sr-only">(abre en una pestaña nueva)</span></a>)}</div>
   {!siteConfig.whatsapp.number && <p class="booking-demo-note">Enlaces de muestra: todavía falta añadir el número de Fernanda.</p>}
 </div></section>

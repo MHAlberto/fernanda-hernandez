@@ -14,12 +14,12 @@ const others = posts.filter(post => post.id !== featured?.id);
   </PageIntro>
   {featured && <section class="section blog-featured-section section--sage"><div class="container blog-feature">
     <a class="blog-feature-art organic-art" href={'/blog/' + featured.id + '/'} aria-label={'Leer ' + featured.data.title}><span class="organic-blob" aria-hidden="true"></span>{featured.data.image && <img src={featured.data.image} alt={featured.data.imageAlt || 'Ilustración del artículo ' + featured.data.title} width={featured.data.imageWidth ?? 1256} height={featured.data.imageHeight ?? 1256} loading="eager" />}</a>
-    <div><p class="eyebrow">Guía destacada · {featured.data.tags.join(' · ')}</p><h2>{featured.data.title}</h2><p>{featured.data.description}</p><EditorialLink href={'/blog/' + featured.id + '/'} label="Leer la guía completa" accent /></div>
+    <div><p class="eyebrow">Guía destacada · {featured.data.tags.join(' · ')}</p><h2>{featured.data.title}</h2><p>{featured.data.description}</p><EditorialLink href={'/blog/' + featured.id + '/'} label="Leer la guía completa" ariaLabel={'Leer la guía completa: ' + featured.data.title} accent /></div>
   </div></section>}
   {others.length > 0 && <section class="section"><div class="container"><p class="eyebrow">Índice de lecturas</p><h2>Elige un tema y <em>continúa desde ahí</em></h2>
     <div class="blog-list">{others.map((post, index) => <article class="blog-row">
       <a class="blog-row-image organic-art" href={'/blog/' + post.id + '/'} aria-label={'Leer ' + post.data.title}><span class:list={['organic-blob', index % 2 ? 'organic-blob--rose' : '']} aria-hidden="true"></span>{post.data.image && <img src={post.data.image} alt={post.data.imageAlt || 'Ilustración del artículo ' + post.data.title} width={post.data.imageWidth ?? 1256} height={post.data.imageHeight ?? 1256} loading="lazy" />}</a>
-      <div><p class="eyebrow">{post.data.tags.join(' · ')}</p><h3><a href={'/blog/' + post.id + '/'}>{post.data.title}</a></h3><p>{post.data.description}</p><EditorialLink href={'/blog/' + post.id + '/'} label="Abrir artículo" /></div>
+      <div><p class="eyebrow">{post.data.tags.join(' · ')}</p><h3><a href={'/blog/' + post.id + '/'}>{post.data.title}</a></h3><p>{post.data.description}</p><EditorialLink href={'/blog/' + post.id + '/'} label="Abrir artículo" ariaLabel={'Abrir artículo: ' + post.data.title} /></div>
     </article>)}</div>
   </div></section>}
 </BaseLayout>

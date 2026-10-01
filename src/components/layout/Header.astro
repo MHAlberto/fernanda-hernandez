@@ -12,7 +12,7 @@ const current = Astro.url.pathname;
 <script>
   const toggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
   const nav = document.querySelector<HTMLElement>('#mobile-nav');
-  function closeMenu() { if (!toggle || !nav) return; toggle.setAttribute('aria-expanded', 'false'); toggle.setAttribute('aria-label', 'Abrir menú'); nav.hidden = true; }
+  function closeMenu() { if (!toggle || !nav) return; const focusWasInMenu = nav.contains(document.activeElement); toggle.setAttribute('aria-expanded', 'false'); toggle.setAttribute('aria-label', 'Abrir menú'); nav.hidden = true; if (focusWasInMenu) (toggle.getClientRects().length ? toggle : document.querySelector<HTMLAnchorElement>('.desktop-nav a'))?.focus(); }
   toggle?.addEventListener('click', () => { if (!nav) return; const open = toggle.getAttribute('aria-expanded') !== 'true'; toggle.setAttribute('aria-expanded', String(open)); toggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú'); nav.hidden = !open; if (open) nav.querySelector('a')?.focus(); });
   document.addEventListener('keydown', event => { if (event.key === 'Escape' && toggle?.getAttribute('aria-expanded') === 'true') { closeMenu(); toggle.focus(); } });
   matchMedia('(min-width: 781px)').addEventListener('change', event => { if (event.matches) closeMenu(); });

@@ -13,9 +13,9 @@ const { post } = Astro.props;
 const { Content } = await render(post);
 const readingMinutes = Math.max(1, Math.ceil((post.body ?? '').split(/\s+/).filter(Boolean).length / 220));
 const related = (await getCollection('blog', ({ data }) => !data.draft)).filter(entry => entry.id !== post.id).slice(0, 2);
-const article = { '@context': 'https://schema.org', '@type': 'BlogPosting', headline: post.data.title, description: post.data.description, datePublished: post.data.publishDate.toISOString(), dateModified: (post.data.updatedDate || post.data.publishDate).toISOString(), author: { '@type': 'Person', name: post.data.author, url: new URL('/sobre-mi/', Astro.site).toString() }, mainEntityOfPage: Astro.url.toString(), ...(post.data.image ? { image: new URL(post.data.image, Astro.site).toString() } : {}) };
+const article = { '@context': 'https://schema.org', '@type': 'BlogPosting', headline: post.data.title, description: post.data.description, inLanguage: 'es-MX', isAccessibleForFree: true, datePublished: post.data.publishDate.toISOString(), dateModified: (post.data.updatedDate || post.data.publishDate).toISOString(), author: { '@type': 'Person', '@id': new URL('/#fernanda', Astro.site).toString(), name: post.data.author, url: new URL('/sobre-mi/', Astro.site).toString() }, publisher: { '@id': new URL('/#servicio', Astro.site).toString() }, mainEntityOfPage: new URL(Astro.url.pathname, Astro.site).toString(), ...(post.data.image ? { image: new URL(post.data.image, Astro.site).toString() } : {}) };
 ---
-<BaseLayout title={post.data.title} description={post.data.description} image={post.data.image} type="article" publishedTime={post.data.publishDate.toISOString()} modifiedTime={post.data.updatedDate?.toISOString()} jsonLd={article}>
+<BaseLayout title={post.data.title} description={post.data.description} image={post.data.image} imageAlt={post.data.imageAlt} type="article" publishedTime={post.data.publishDate.toISOString()} modifiedTime={post.data.updatedDate?.toISOString()} jsonLd={article}>
   <article>
     <header class="page-hero page-hero--small article-header"><div class="container article-heading">
       <Breadcrumbs items={[{label:'Inicio',href:'/'},{label:'Blog',href:'/blog/'},{label:post.data.title}]} />
@@ -36,7 +36,7 @@ const article = { '@context': 'https://schema.org', '@type': 'BlogPosting', head
   <section class="section final-cta article-booking-cta"><div class="container narrow"><p class="eyebrow">Si quieres dar el siguiente paso</p><h2>Podemos empezar con <em>una conversación</em></h2><p>Escríbeme para conocer cómo son las sesiones en línea, resolver tus dudas y confirmar si este espacio puede ser adecuado para ti.</p><EditorialLink href="/agendar/" label="Consultar y agendar una sesión" accent /><p class="article-cta-secondary"><a href="/contacto/">Ver opciones de contacto</a></p></div></section>
   {related.length > 0 && <section class="section section--sage related-articles"><div class="container"><p class="eyebrow">Sigue leyendo</p><h2>Otras preguntas para <em>explorar</em></h2><div class="blog-list">{related.map(entry => <article class="blog-row">
     <a class="blog-row-image organic-art" href={'/blog/' + entry.id + '/'} aria-label={'Leer ' + entry.data.title}><span class="organic-blob" aria-hidden="true"></span>{entry.data.image && <img src={entry.data.image} alt={entry.data.imageAlt || 'Ilustración del artículo ' + entry.data.title} width={entry.data.imageWidth ?? 1256} height={entry.data.imageHeight ?? 1256} loading="lazy" />}</a>
-    <div><h3><a href={'/blog/' + entry.id + '/'}>{entry.data.title}</a></h3><p>{entry.data.description}</p><EditorialLink href={'/blog/' + entry.id + '/'} label="Leer artículo" /></div>
+    <div><h3><a href={'/blog/' + entry.id + '/'}>{entry.data.title}</a></h3><p>{entry.data.description}</p><EditorialLink href={'/blog/' + entry.id + '/'} label="Leer artículo" ariaLabel={'Leer artículo: ' + entry.data.title} /></div>
   </article>)}</div></div></section>}
 </BaseLayout>
 

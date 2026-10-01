@@ -10,7 +10,7 @@ const preparation = [
   { Icon: Camera, title: 'Audio y cámara listos', text: 'Prueba el micrófono y la cámara. Coloca tu dispositivo en una superficie estable.' },
   { Icon: BatteryCharging, title: 'Unos minutos de margen', text: 'Ten el enlace y el cargador a mano. Así puedes conectarte sin prisas.' },
 ];
-const questions = sessionFaqs.filter(item => ['enlace', 'conexion', 'dispositivo'].includes(item.id));
+const questions = sessionFaqs.filter(item => ['enlace', 'conexion', 'dispositivo', 'accesibilidad'].includes(item.id));
 ---
 <BaseLayout title="Sesiones de psicoterapia en línea" description="Cómo preparar tu espacio, conectarte por videollamada y acordar una primera sesión de psicoterapia en línea con Fernanda Hernández.">
   <PageIntro eyebrow="Psicoterapia por videollamada" title="Tu sesión, desde un espacio propio" description="La sesión es un tiempo reservado para conversar contigo. Al agendar, acordamos el horario, la plataforma y los detalles para conectarnos." image="/assets/03-ilustraciones-principales/ilustracion-psicologa-4.webp" imageAlt="Ilustración de Fernanda frente a una computadora, preparada para una videollamada">

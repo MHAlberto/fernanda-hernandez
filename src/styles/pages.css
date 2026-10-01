@@ -7,7 +7,7 @@
 .accompaniment-index h2{max-width:800px}
 .accompaniment-open-list{margin-top:38px}
 .accompaniment-open-item{display:grid;grid-template-columns:45px 34px minmax(0,1fr) minmax(145px,auto);gap:13px;align-items:start;padding:17px 0;color:var(--forest)}
-.accompaniment-open-item:hover .open-item-copy strong,.accompaniment-open-item:hover .open-item-action{color:#527968}
+.accompaniment-open-item:hover .open-item-copy strong,.accompaniment-open-item:hover .open-item-action{color:var(--sage-dark)}
 .open-item-index{font-family:var(--serif);font-size:1.7rem;color:#698f84;line-height:1.1}
 .open-item-icon{color:#698f84;padding-top:4px}
 .open-item-copy strong{display:block;font-family:var(--serif);font-size:clamp(1.5rem,2vw,2rem);font-weight:400;line-height:1.1}
@@ -28,7 +28,7 @@
 .contact-details .eyebrow svg{vertical-align:middle;margin-right:8px}
 .contact-social-block .social-links{display:flex;flex-direction:row;flex-wrap:wrap;gap:18px 28px;margin-top:22px}
 .social-links a{display:inline-flex;align-items:center;gap:9px;color:var(--forest)}
-.social-links a:hover{color:#527968}
+.social-links a:hover{color:var(--sage-dark)}
 .social-links svg{color:#698f84}
 .social-links small{flex-basis:100%;max-width:300px;color:var(--muted);font-size:.76rem;line-height:1.45}
 .booking-steps h2{max-width:750px}

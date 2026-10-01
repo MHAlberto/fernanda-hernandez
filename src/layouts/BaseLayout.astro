@@ -10,8 +10,8 @@ import '../styles/redesign.css';
 import '../styles/pages.css';
 const webAnalyticsToken = import.meta.env.PROD ? import.meta.env.PUBLIC_CF_WEB_ANALYTICS_TOKEN?.trim() : undefined;
 const googleVerification = import.meta.env.PROD ? import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION?.trim() : undefined;
-interface Props { title: string; description: string; image?: string; noindex?: boolean; type?: string; publishedTime?: string; modifiedTime?: string; jsonLd?: object | object[]; }
-const { title, description, image, noindex, type, publishedTime, modifiedTime, jsonLd } = Astro.props;
+interface Props { title: string; description: string; image?: string; imageAlt?: string; noindex?: boolean; type?: string; publishedTime?: string; modifiedTime?: string; jsonLd?: object | object[]; }
+const { title, description, image, imageAlt, noindex, type, publishedTime, modifiedTime, jsonLd } = Astro.props;
 ---
 <!doctype html>
 <html lang="es-MX"><head>
@@ -21,7 +21,7 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', '${gaMeasurementId}');`}></script>}
   <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="theme-color" content="#F8F4EF" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" /><SEO {...{ title, description, image, noindex, type, publishedTime, modifiedTime }} />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" /><SEO {...{ title, description, image, imageAlt, noindex, type, publishedTime, modifiedTime }} />
   {googleVerification && <meta name="google-site-verification" content={googleVerification} />}{jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
 </head><body><a class="skip-link" href="#main">Saltar al contenido</a><Header /><main id="main"><slot /></main><Footer /><WhatsAppButton />
 <script>

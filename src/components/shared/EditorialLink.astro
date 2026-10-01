@@ -1,8 +1,9 @@
 ---
-interface Props { href: string; label: string; accent?: boolean; external?: boolean; }
-const { href, label, accent = false, external = false } = Astro.props;
+interface Props { href: string; label: string; ariaLabel?: string; accent?: boolean; external?: boolean; }
+const { href, label, ariaLabel, accent = false, external = false } = Astro.props;
 ---
-<a class:list={['editorial-link', { 'editorial-link--accent': accent }]} href={href} target={external ? '_blank' : undefined} rel={external ? 'noopener noreferrer' : undefined}>
+<a class:list={['editorial-link', { 'editorial-link--accent': accent }]} href={href} aria-label={ariaLabel} target={external ? '_blank' : undefined} rel={external ? 'noopener noreferrer' : undefined}>
   <span>{label}</span>
+  {external && <span class="sr-only">(abre en una pestaña nueva)</span>}
   <svg viewBox="0 0 35 35" width="27" height="27" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.5 30C9 23 4 17 5.5 10c1.2-6 7.7-7.3 11.7.2C21-1 28 2.2 29 9c1.1 7-5 14.5-11.5 21Z"/></svg>
 </a>
